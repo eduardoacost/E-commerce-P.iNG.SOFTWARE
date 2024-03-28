@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { check } = require('express-validator');
 const { crearUsuario, loginUsuario, revalidarToken } = require('../controllers/auth' );
-const { validarCampos } = require('../middlewares/validar-campos');
+const { validarCampos } = require('../middlewares/validarCampos');
 
 router.post('/', loginUsuario );
 
