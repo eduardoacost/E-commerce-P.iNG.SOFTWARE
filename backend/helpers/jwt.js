@@ -12,8 +12,8 @@ const generarJWT = (uid, name) =>{
                 reject('No se pudo generar el token');
             }
             resolve(token)
-        })
-    })
+        });
+    });
 }
 
-module.exports = {generarJWT}
+module.exports = { generarJWT }
