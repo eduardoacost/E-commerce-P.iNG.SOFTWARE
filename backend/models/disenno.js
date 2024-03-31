@@ -17,3 +17,5 @@ const disennoSchema = Schema ({
     }
 
 });
+
+module.exports = model('Disenno', disennoSchema);

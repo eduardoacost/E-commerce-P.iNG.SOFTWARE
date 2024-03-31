@@ -35,4 +35,6 @@ const imagenSchema = Schema ({
     tamanno:{
         type: String
     }
-})
+});
+
+module.exports = model('Imagen', imagenSchema);

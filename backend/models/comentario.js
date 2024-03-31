@@ -15,3 +15,5 @@ const comentarioSchema = Schema ({
         require: true
     }
 });
+
+module.exports = model('Comentario', comentarioSchema);

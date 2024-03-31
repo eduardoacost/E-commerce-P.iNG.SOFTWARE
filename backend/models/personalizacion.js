@@ -23,3 +23,5 @@ const personalizacionSchema = Schema ({
         require: true
     }
 });
+
+module.exports = model('Personalizacion', personalizacionSchema);

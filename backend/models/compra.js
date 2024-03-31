@@ -1,6 +1,6 @@
 const {Schema, model} = require('mongoose');
 
-const CompraSchema = Schema ({
+const compraSchema = Schema ({
     consecutivo:{
         type: int,
         require: true,
@@ -61,3 +61,5 @@ const CompraSchema = Schema ({
         require: true
     }
 });
+
+module.exports = model('Compra', compraSchema);
