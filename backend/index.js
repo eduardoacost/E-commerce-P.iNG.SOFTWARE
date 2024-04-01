@@ -1,27 +1,38 @@
-const express = require ('express')
-require('dotenv').config()
-const { dbConnection } = require('./database/config.js')
+const Server = require('./server/server.js');
+const myServer = new Server();
 
-const app = express();
+myServer.listen();
 
-//Conexion con base de datos
-dbConnection();
+// const express = require ('express')
+// require('dotenv').config()
+// const { dbConnection } = require('./database/config.js')
+// const cors = require('cors');
 
-app.use(express.static('../frontend'));
+// const app = express();
 
-//Lectura y parseo del body
-app.use(express.json());
+// //Conexion con base de datos
+// dbConnection();
 
-// Rutas
-app.use('/api/auth',require('./routes/auth.js'));
+// // CORS
+// app.use(cors());
 
-app.get('/',(req,res) => {
-    res.json({
-        ok:true
-    })
-})
+// app.use(express.static('../frontend'));
 
-// Escuchar en puerto 4000
-app.listen(process.env.PORT, () => {
-    console.log('Servidor corriendo en puerto:', process.env.PORT)
-})
+// //Lectura y parseo del body
+// app.use(express.json());
+
+// // Rutas
+// app.use('/api/auth',require('./routes/auth.js'));
+// app.use('/api/task',require('./routes/task.js'));
+
+
+// app.get('/',(req,res) => {
+//     res.json({
+//         ok:true
+//     })
+// })
+
+// // Escuchar en puerto 4000
+// app.listen(process.env.PORT, () => {
+//     console.log('Servidor corriendo en puerto:', process.env.PORT)
+// })

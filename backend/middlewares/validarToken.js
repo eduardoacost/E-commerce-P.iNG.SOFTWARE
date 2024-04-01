@@ -6,11 +6,11 @@ const validarJWT = (req, res = response, next) => {
     if (!token){
         return res.status(401).json({
             ok: false,
-            msg: 'No hay token!'
+            msg: 'No hay token'
         });
     }
     try{
-        const { uid, name} = jwt.verify(
+        const { uid, name } = jwt.verify(
             token,
             process.env.SECRET_JWT_SEED
         );
