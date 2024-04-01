@@ -5,10 +5,9 @@ import { BrowserRouter,Routes,Route } from 'react-router-dom';
 import Tienda from './Pages/Tienda/Tienda';
 import Productos from './Pages/Productos/Productos';
 import Contactanos from './Pages/Contactanos/Contactanos';
-import Sobrenosotros from './Pages/Sobre nosotros/sobrenosotros';
 import Login from './Pages/Login/Login';
 import Carrito from './Pages/Carrito/Carrito';
-import Pagina from './Pages/Pagina/Pagina';
+
 
 function App() {
   return (
