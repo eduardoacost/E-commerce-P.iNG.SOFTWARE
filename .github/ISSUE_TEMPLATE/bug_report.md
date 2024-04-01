@@ -21,7 +21,7 @@ Please provide detailed steps for reproducing the issue:
 2. Step 2
 3. You get it...
 
-**Screenshots**
+## **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
 ## Failure Logs
@@ -30,7 +30,7 @@ Please include any relevant log snippets or files. (make sure you inserted it us
 ## Context
 Please provide any relevant information about your setup, e.g., firmware version, operating system, SDK version, toolchain version. 
 
-**Workstation information (please complete the following information):**
+## **Workstation information (please complete the following information):**
  - OS: [e.g. Windows 10, Windows 11]
  - npm version [run ``npm --version`` and paste the result here]
 
