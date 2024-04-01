@@ -12,8 +12,8 @@ const tareaSchema = Schema({
 });
 
 tareaSchema.method('toJSON', function(){
-    const { __v, __id, ...object } = this.toObject();
-    object.id - _id;
+    const { _v, _id, ...object } = this.toObject();
+    object.id=_id;
     return object;
 });
 

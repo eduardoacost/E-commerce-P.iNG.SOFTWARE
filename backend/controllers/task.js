@@ -27,7 +27,7 @@ const listarTareas = async (req, res = express.request) => {
     try{
         res.statusCode(200).json({
             ok: true,
-            tasks
+            tareas,
         });
 
     }catch(error){

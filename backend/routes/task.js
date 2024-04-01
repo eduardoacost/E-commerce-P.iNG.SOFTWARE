@@ -5,14 +5,14 @@ const { listarTareas, crearTarea, actualizarTarea, eliminarTarea } = require('..
 
 router.use(validarJWT);
 
-router.get('/', listarTareas((req, res) => {
+router.get('/', listarTareas, (req, res) => {
     res.status(200).json({
         ok: true
     });
-}));
+});
 
 router.post('/', crearTarea);
-router.put('/:id', actualizarTarea);
-router.delete('/:id', eliminarTarea);
+//router.put('/:id', actualizarTarea);
+//router.delete('/:id', eliminarTarea);
 
 module.exports = router;
