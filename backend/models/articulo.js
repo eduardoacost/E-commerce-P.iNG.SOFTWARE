@@ -23,6 +23,11 @@ const articuloSchema = Schema ({
         require: true
     },
 
+    stock:{
+        type: int,
+        require: true
+    },
+
     comentario:{
         type: Schema.Types.ObjectId,
         ref: 'comentario'
@@ -35,3 +40,5 @@ const articuloSchema = Schema ({
     }
     
 });
+
+module.exports = model('Articulo', articuloSchema);

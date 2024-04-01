@@ -8,13 +8,11 @@ const UsuarioSchema = Schema ({
     },
     
     nombre:{
-        type: String,
-        require: true
+        type: String
     },
 
     apellido:{
-        type: String,
-        require: true
+        type: String
     },
 
     username:{
@@ -34,7 +32,8 @@ const UsuarioSchema = Schema ({
     },
 
     rol:{
-        type: String,
-        require: true
+        type: String
     }
 });
+
+module.exports = model('Usuario', UsuarioSchema);

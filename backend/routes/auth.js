@@ -10,9 +10,10 @@ router.post('/', loginUsuario );
 router.post(
     '/new',
     [
-        check('name','El campo nombre es obligatorio').not().isEmpty(),
-        check('email','El campo e-mail es obligatorio').isEmail(),
-        check('password', ).isLength({min: 6}),
+        check('identificacion','El campo identificación es obligatorio').not().isEmpty(),
+        check('username','El campo username es obligatorio').not().isEmpty(),
+        check('correo','El campo correo es obligatorio').isEmail(),
+        check('password','La contraseña debe tener al menos 6 caracteres').isLength({min: 6}),
         validarCampos
     ],
     crearUsuario);

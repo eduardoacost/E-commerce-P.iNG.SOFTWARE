@@ -17,3 +17,5 @@ const categoriaSchema = Schema ({
         type: String
     }
 });
+
+module.exports = model('Categoria', categoriaSchema);

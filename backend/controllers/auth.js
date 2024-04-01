@@ -1,20 +1,20 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const usuario = require('../models/usuario');
+const Usuario = require('../models/usuario');
 const { generarJWT } = require('../helpers/jwt');
 
 const crearUsuario = async (req, res = express.request ) => {
-    const {identificacion, nombre, apellido, username, password} = req.body
+    const {identificacion, correo, username, password} = req.body
     try{
-        let usuario = await usuario.findOne({identificacion: identificacion})
+        let usuario = await Usuario.findOne({identificacion: identificacion})
         if ( usuario ){
             return res.status(400).json({
                 ok: false,
                 msg: 'El ID '+identificacion+ ' ya se encuentra en uso',
-            })
+            });
         }
 
-        usuario = new usuario(req.body);
+        usuario = new Usuario(req.body);
         const salt = bcrypt.genSaltSync();
         usuario.password = bcrypt.hashSync(password, salt);
         await usuario.save();
@@ -22,26 +22,27 @@ const crearUsuario = async (req, res = express.request ) => {
         res.status(200).json({
             ok: true,
             usuario
-        })
+        });
+
     }catch(error){
         console.log(error)
         res.status(500).json({
             ok: false,
             error,
-        })
+        });
     }
 }
     
 const loginUsuario = async (req, res = express.request) => {
-    const { email, password} = req.body
+    const { correo, password} = req.body
 
     try{
-        let usuario = await usuario.findOne({email: email});
+        let usuario = await Usuario.findOne({correo: correo});
         if (!usuario){
             return res.status(400).json({
                 ok: false,
                 msg: 'El usuario NO existe',
-            })
+            });
         }
         
         const passwordValid = bcrypt.compareSync(password, usuario.password);
@@ -52,11 +53,11 @@ const loginUsuario = async (req, res = express.request) => {
             });
         }
 
-        const token = await (generarJWT(usuario.id, usuario.name));
+        const token = await (generarJWT(usuario.identificacion, usuario.username));
 
         res.status(200).json({
             ok: true,
-            usuario,
+            msg:('Bienvenido '+usuario.username+' Login correcto'),
         })
     }   catch(error){
         console.log(error)
