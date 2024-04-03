@@ -9,7 +9,6 @@ class Server{
         this.app = express();
         this.port = process.env.PORT;
         this.server = require('http').createServer(this.app);
-        this.io = require('socket.io')(this.server);
 
         this.paths = {
             auth: '/api/auth',
@@ -19,9 +18,6 @@ class Server{
         this.connectToDB();
         this.addMiddlewares();
         this.setRoutes();
-
-        //Sockets
-        this.sockets();
     }
 
     //Conectar BBDD
@@ -42,25 +38,6 @@ class Server{
         this.app.use(this.paths.auth, require('../routes/auth.js'));
         this.app.use(this.paths.task, require('../routes/task.js'));
 
-    }
-
-    sockets(){
-        this.io.on('connect', socket => {
-            console.log('Cliente ',socket.id,' conectado');
-
-            socket.on('mensaje-de-cliente', (payload, callback) =>{
-                console.log(payload);
-
-                callback('Mensaje recibido');
-
-                payload.from = 'el-server';
-                this.io.emit('mensaje-del-server', payload);
-            });
-
-            socket.on('disconnect',() => {
-                console.log('Cliente ',socket.id,' desconectado');
-            });
-        });
     }
 
     listen(){
