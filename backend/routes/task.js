@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { validarJWT } = require('../middlewares/validarToken');
-const { listarTareas, crearTarea, actualizarTarea, eliminarTarea } = require('../controllers/task.js');
+const { listarTareas, crearTarea} = require('../controllers/task.js'); //PENDIENTE actualizarTarea, eliminarTarea
 
 router.use(validarJWT);
 
