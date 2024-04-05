@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const {Schema} = require('mongoose');
 
 const imagenSchema = Schema ({
     dimensiones:{
@@ -37,4 +37,5 @@ const imagenSchema = Schema ({
     }
 });
 
-module.exports = model('Imagen', imagenSchema);
+const imagen = mongoose.model('imagen',imagenSchema);
+export default imagen;

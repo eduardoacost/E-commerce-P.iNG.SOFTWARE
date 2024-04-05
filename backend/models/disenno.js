@@ -1,21 +1,22 @@
-const {Schema, model} = require('mongoose');
+const { Schema } = require('mongoose');
 
-const disennoSchema = Schema ({
-    nombre:{
+const disennoSchema = Schema({
+    nombre: {
         type: String,
         require: true
     },
 
-    descripcion:{
+    descripcion: {
         type: String,
         require: true
     },
 
-    fechaCreacion:{
+    fechaCreacion: {
         type: Date,
         require: true
     }
 
 });
 
-module.exports = model('Disenno', disennoSchema);
+const disenno = mongoose.model('disenno',disennoSchema);
+export default disenno;

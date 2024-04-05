@@ -1,20 +1,21 @@
-const {Schema, model} = require('mongoose');
+const { Schema } = require('mongoose');
 
 const tareaSchema = Schema({
-    titulo:{
+    titulo: {
         type: String,
         required: true
     },
-    user:{
+    user: {
         type: Schema.Types.ObjectId,
-        ref:'Usuario'
+        ref: 'Usuario'
     }
 });
 
-tareaSchema.method('toJSON', function(){
-    const { _v, _id, ...object } = this.toObject();
-    object.id=_id;
+tareaSchema.method('toJSON', function () {
+    const { _id, ...object } = this.toObject();
+    object.id = _id;
     return object;
 });
 
-module.exports = model('Tarea', tareaSchema);
+const tarea = mongoose.model('tarea',tareaSchema);
+export default tarea;

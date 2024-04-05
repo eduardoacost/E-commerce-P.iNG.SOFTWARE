@@ -11,4 +11,4 @@ const dbConnection = async() => {
         throw new Error ('Error al conectar con la BBDD');
     }
 }
-module.exports = {dbConnection}
+module.exports = {dbConnection};

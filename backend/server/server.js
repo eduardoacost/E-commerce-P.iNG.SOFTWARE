@@ -1,11 +1,11 @@
-const express = require ('express')
+const express = require('express')
 require('dotenv').config()
 const { dbConnection } = require('../database/config.js')
 const cors = require('cors');
 
-class Server{
-    
-    constructor(){
+class Server {
+
+    constructor() {
         this.app = express();
         this.port = process.env.PORT;
         this.server = require('http').createServer(this.app);
@@ -21,11 +21,11 @@ class Server{
     }
 
     //Conectar BBDD
-    async connectToDB(){
+    async connectToDB() {
         await dbConnection();
     }
 
-    addMiddlewares(){
+    addMiddlewares() {
         //CORS
         this.app.use(cors());
 
@@ -34,17 +34,18 @@ class Server{
         this.app.use(express.static('public'))
     }
 
-    setRoutes(){
+    setRoutes() {
         this.app.use(this.paths.auth, require('../routes/auth.js'));
         this.app.use(this.paths.task, require('../routes/task.js'));
 
     }
 
-    listen(){
-        this.app.listen(this.port,() =>{
-            console.log('Servidor corriendo en puerto:',process.env.PORT)
+    listen() {
+        this.app.listen(this.port, () => {
+            //callback
+            console.log('Servidor corriendo en puerto:', process.env.PORT)
         });
     }
 }
 
-module.exports = Server;
+module.exports = { Server };

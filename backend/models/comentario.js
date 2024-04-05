@@ -1,4 +1,4 @@
-const {Schema, model} = require('mongoose');
+const {Schema} = require('mongoose');
 
 const comentarioSchema = Schema ({
     calificacion:{
@@ -16,4 +16,5 @@ const comentarioSchema = Schema ({
     }
 });
 
-module.exports = model('Comentario', comentarioSchema);
+const comentario = mongoose.model('comentario', comentarioSchema);
+export default comentario;

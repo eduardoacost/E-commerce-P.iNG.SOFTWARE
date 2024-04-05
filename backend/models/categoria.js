@@ -1,21 +1,22 @@
-const {Schema, model} = require('mongoose');
+const { Schema } = require('mongoose');
 
-const categoriaSchema = Schema ({
-    identificador:{
+const categoriaSchema = Schema({
+    identificador: {
         type: String,
         require: true,
         unique: true
     },
 
-    nombre:{
+    nombre: {
         type: String,
         require: true,
         unique: true
     },
 
-    subCategoria:{
+    subCategoria: {
         type: String
     }
 });
 
-module.exports = model('Categoria', categoriaSchema);
+const categoria = mongoose.model('categoria', categoriaSchema);
+export default categoria;

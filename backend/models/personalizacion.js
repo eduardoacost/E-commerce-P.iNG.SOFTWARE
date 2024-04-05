@@ -1,27 +1,28 @@
-const {Schema, model} = require ('mongoose');
+const { Schema } = require('mongoose');
 
-const personalizacionSchema = Schema ({
-    identificador:{
+const personalizacionSchema = Schema({
+    identificador: {
         type: String,
         require: true,
         unique: true
     },
 
-    disennadorEncargado:{
+    disennadorEncargado: {
         type: Schema.Types.ObjectId,
         ref: 'usuario',
         require: true
     },
 
-    estado:{
+    estado: {
         type: String,
         require: true
     },
 
-    tipoEnvio:{
+    tipoEnvio: {
         type: String,
         require: true
     }
 });
 
-module.exports = model('Personalizacion', personalizacionSchema);
+const personalizacion = mongoose.model('personalizacion', personalizacionSchema);
+export default personalizacion;
