@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const compraSchema = Schema ({
     consecutivo:{
@@ -62,5 +62,4 @@ const compraSchema = Schema ({
     }
 });
 
-const compra = mongoose.model('compra',compraSchema);
-export default compra;
+module.exports = model('compra',compraSchema);

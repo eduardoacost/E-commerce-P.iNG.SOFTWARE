@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const personalizacionSchema = Schema({
     identificador: {
@@ -24,5 +24,4 @@ const personalizacionSchema = Schema({
     }
 });
 
-const personalizacion = mongoose.model('personalizacion', personalizacionSchema);
-export default personalizacion;
+module.exports = model('personalizacion',personalizacionSchema);

@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const categoriaSchema = Schema({
     identificador: {
@@ -18,5 +18,4 @@ const categoriaSchema = Schema({
     }
 });
 
-const categoria = mongoose.model('categoria', categoriaSchema);
-export default categoria;
+module.exports = model('categoria',categoriaSchema);

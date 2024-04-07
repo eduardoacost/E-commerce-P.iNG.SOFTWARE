@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const disennoSchema = Schema({
     nombre: {
@@ -18,5 +18,4 @@ const disennoSchema = Schema({
 
 });
 
-const disenno = mongoose.model('disenno',disennoSchema);
-export default disenno;
+module.exports = model('disenno',disennoSchema);

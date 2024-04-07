@@ -1,6 +1,6 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
-const usuarioSchema = new Schema(
+const usuarioSchema = Schema(
     {
         identificacion: {
             type: String,
@@ -37,5 +37,5 @@ const usuarioSchema = new Schema(
         }
     }, { timestamps: true }
 );
-const usuario = mongoose.model('usuario', usuarioSchema);
-module.exports = usuario;
+
+module.exports = model('usuario', usuarioSchema);

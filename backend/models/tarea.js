@@ -1,4 +1,4 @@
-const { Schema } = require('mongoose');
+const { Schema, model } = require('mongoose');
 
 const tareaSchema = Schema({
     titulo: {
@@ -17,5 +17,4 @@ tareaSchema.method('toJSON', function () {
     return object;
 });
 
-const tarea = mongoose.model('tarea',tareaSchema);
-export default tarea;
+module.exports = model('tarea',tareaSchema);

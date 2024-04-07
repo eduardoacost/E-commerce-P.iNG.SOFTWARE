@@ -1,4 +1,4 @@
-const {Schema} = require('mongoose');
+const {Schema, model} = require('mongoose');
 
 const articuloSchema = Schema ({
     serial:{
@@ -41,5 +41,4 @@ const articuloSchema = Schema ({
     
 });
 
-const articulo = mongoose.model('articulo',articuloSchema);
-export default articulo;
+module.exports = model('articulo',articuloSchema);
