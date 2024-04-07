@@ -1,8 +1,12 @@
 # Proyecto de Ingeniería de Software I
 ## Tienda de personalización de artículos en línea
+Integrantes:
+- Laura Gallo
+- Eduardo Acosta [@eduardoacost](https://github.com/eduardoacost)
+- Jean Pool Esguerra [@JeanEsg](https://github.com/JeanEsg)
+- Felipe Plata [@Juanxo17](https://github.com/Juanxo17)
+- Sebastian Balanta [@PostboxRetinal](https://github.com/PostboxRetinal)
 ### Implementado en nodeJS, ReactJS y mongoDB
-
-
 ### Introducción
 El propósito central de este proyecto es desarrollar e implementar una aplicación web
 destinada a una tienda en línea especializada en la venta y personalización de artículos. 
@@ -22,11 +26,6 @@ necesidades de los usuarios finales mediante un conjunto de requisitos definidos
 fomentará el trabajo en equipo para abordar desafíos del mundo real, promoviendo así un
 aprendizaje colaborativo esencial en el ámbito del desarrollo de software.
 
-Integrantes:
-- Eduardo Acosta @eduardoacost
-- Jean Pool Esguerra @JeanEsg
-- Sebastian Balanta @PostboxRetinal
-- Felipe Plata
-- Laura Gallo
+
   
 Presentado a John Eder Masso Daza
