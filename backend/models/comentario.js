@@ -16,4 +16,4 @@ const comentarioSchema = Schema ({
     }
 });
 
-module.exports = model('Comentario', comentarioSchema);
+module.exports = model('comentario',comentarioSchema);

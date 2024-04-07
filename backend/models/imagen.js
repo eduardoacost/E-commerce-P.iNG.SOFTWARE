@@ -37,4 +37,4 @@ const imagenSchema = Schema ({
     }
 });
 
-module.exports = model('Imagen', imagenSchema);
+module.exports = model('imagen',imagenSchema);

@@ -12,4 +12,4 @@ const validarCampos = (req, res = express.response, next) =>{
     next();
 }
 
-module.exports = { validarCampos }
+module.exports = { validarCampos };
