@@ -1,4 +1,4 @@
-const Server = require('./server/server.js');
+const Server = require("./server/server.js");
 const myServer = new Server();
 
 myServer.listen();
@@ -24,7 +24,6 @@ myServer.listen();
 // // Rutas
 // app.use('/api/auth',require('./routes/auth.js'));
 // app.use('/api/task',require('./routes/task.js'));
-
 
 // app.get('/',(req,res) => {
 //     res.json({
