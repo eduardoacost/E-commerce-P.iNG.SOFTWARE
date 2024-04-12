@@ -1,44 +1,47 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const articuloSchema = Schema ({
-    serial:{
-        type: String,
-        require: true,
-        unique: true
-    },
-    
-    nombre:{
-        type: String,
-        require: true
-    },
+const articuloSchema = Schema({
+  serial: {
+    type: String,
+    require: true,
+    unique: true,
+  },
 
-    precioUnitario:{
-        type: Float,
-        require: true
-    },
+  nombre: {
+    type: String,
+    require: true,
+  },
 
-    categoria:{
-        type: Schema.Types.ObjectId,
-        ref: 'categoria',
-        require: true
-    },
+  precioUnitario: {
+    type: Number,
+    require: true,
+  },
 
-    stock:{
-        type: int,
-        require: true
-    },
+  categoria: {
+    type: Schema.Types.ObjectId,
+    ref: "categoria",
+    require: true,
+  },
 
-    comentario:{
-        type: Schema.Types.ObjectId,
-        ref: 'comentario'
-    },
+  stock: {
+    type: Number,
+    require: true,
+  },
 
-    imagen:{
-        type: Schema.Types.ObjectId,
-        ref: 'imagen',
-        require: true
-    }
-    
+  comentario: {
+    type: Schema.Types.ObjectId,
+    ref: "comentario",
+  },
+
+  imagen: {
+    type: Schema.Types.ObjectId,
+    ref: "imagen",
+    require: true,
+  },
+  isPersonalizable: {
+    type: Boolean,
+    require: true,
+  },
 });
 
-module.exports = model('articulo',articuloSchema);
+module.exports = model("articulo", articuloSchema);

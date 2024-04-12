@@ -1,13 +1,13 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "Proyecto IngSoftware I. Desarrollado en nodeJS, reactJS y mongoDB",
+  "description": "backend proyecto IngSoftware I. Desarrollado en nodeJS, reactJS y mongoDB",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Laura Gallo, Felipe Plata, Jean Pool Esguerra, Eduardo Acosta y Sebastian Balanta",
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",

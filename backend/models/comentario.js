@@ -1,19 +1,19 @@
-const {Schema, model} = require('mongoose');
+const { Schema, model } = require("mongoose");
 
-const comentarioSchema = Schema ({
-    calificacion:{
-        type: int,
-        require: true
-    },
+const comentarioSchema = Schema({
+  calificacion: {
+    type: Number,
+    require: true,
+  },
 
-    contenido:{
-        type: String
-    },
+  contenido: {
+    type: String,
+  },
 
-    titulo:{
-        type: String,
-        require: true
-    }
+  titulo: {
+    type: String,
+    require: true,
+  },
 });
 
-module.exports = model('comentario',comentarioSchema);
+module.exports = model("comentario", comentarioSchema);
