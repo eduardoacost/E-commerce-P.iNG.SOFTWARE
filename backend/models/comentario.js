@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const comentarioSchema = Schema({
   calificacion: {
-    type: int,
+    type: Number,
     require: true,
   },
 

@@ -5,12 +5,12 @@ const imagenSchema = Schema({
     type: "object",
     properties: {
       alto: {
-        type: int,
+        type: Number,
         require: true,
       },
 
       ancho: {
-        type: int,
+        type: Number,
         require: true,
       },
     },

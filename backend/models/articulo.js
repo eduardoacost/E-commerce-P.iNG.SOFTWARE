@@ -13,7 +13,7 @@ const articuloSchema = Schema({
   },
 
   precioUnitario: {
-    type: Float,
+    type: Number,
     require: true,
   },
 
@@ -24,7 +24,7 @@ const articuloSchema = Schema({
   },
 
   stock: {
-    type: int,
+    type: Number,
     require: true,
   },
 
@@ -36,6 +36,10 @@ const articuloSchema = Schema({
   imagen: {
     type: Schema.Types.ObjectId,
     ref: "imagen",
+    require: true,
+  },
+  isPersonalizable: {
+    type: Boolean,
     require: true,
   },
 });

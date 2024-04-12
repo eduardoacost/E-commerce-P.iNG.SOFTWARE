@@ -2,7 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const compraSchema = Schema({
   consecutivo: {
-    type: int,
+    type: Number,
     require: true,
     unique: true,
   },
@@ -45,7 +45,7 @@ const compraSchema = Schema({
       },
 
       codigoPostal: {
-        type: int,
+        type: Number,
       },
 
       observaciones: {
