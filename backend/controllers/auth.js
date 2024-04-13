@@ -40,7 +40,7 @@ const loginUsuario = async (req, res = express.request) => {
     if (!usuario) {
       return res.status(400).json({
         ok: false,
-        msg: "El usuario NO existe",
+        msg: "El correo" + correo + " no se ha encontrado en la base de datos",
       });
     }
 
@@ -48,7 +48,7 @@ const loginUsuario = async (req, res = express.request) => {
     if (!passwordValid) {
       return res.status(400).json({
         ok: false,
-        msg: "Password no válido",
+        msg: "Usuario o contraseña incorrectos",
       });
     }
 
@@ -56,8 +56,10 @@ const loginUsuario = async (req, res = express.request) => {
 
     res.status(200).json({
       ok: true,
+      token,
       msg: "Bienvenido " + usuario.username + " Login correcto",
     });
+
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -65,9 +67,6 @@ const loginUsuario = async (req, res = express.request) => {
       error,
     });
   }
-  res.json({
-    ok: true,
-  });
 };
 
 const revalidarToken = async (req, res = express.request) => {
