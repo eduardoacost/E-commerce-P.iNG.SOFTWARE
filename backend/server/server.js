@@ -12,6 +12,7 @@ class Server {
       auth: "/api/auth",
       task: "/api/task",
       catalogo: "/api/catalogo"
+
     };
 
     this.connectToDB();

@@ -9,7 +9,7 @@ const {
 const { validarCampos } = require("../middlewares/validarCampos");
 const { validarJWT } = require("../middlewares/validarToken");
 
-router.post("/", loginUsuario);
+router.post("/login", loginUsuario);
 
 router.post(
   "/new",
