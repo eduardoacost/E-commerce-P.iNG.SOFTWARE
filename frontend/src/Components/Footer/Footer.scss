@@ -1,0 +1,73 @@
+.Footer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #F9F9F9;
+    gap: 50px;
+}
+
+.Mantente-Conectado{
+    margin-left: -75%;
+    margin-top: -3%;
+    font-size: 14px;
+    list-style: none;
+}
+
+.Mantente-Conectado p{
+    
+    font-weight: 700;
+}
+
+.Mansoury{
+    margin-top: -14.4%;
+    margin-left: -29%;
+    list-style: none;
+    font-size: 14px;
+}
+.Mansoury p{
+   
+    font-weight: 700;
+}
+.Atencion-Al-Cliente{
+    margin-top: -12%;
+    margin-left: 30%;
+    font-size: 14px;
+    list-style: none;
+}
+
+.Atencion-Al-Cliente P{
+    font-weight: 700;
+}
+
+.Acesso-Rapido{
+    font-size: 14px;
+    list-style: none;
+    margin-top: -12.5%;
+    margin-left: 75%;
+
+}
+.Acesso-Rapido p{
+    font-weight: 700;
+}
+.Acesso-Rapido li{
+    cursor: pointer;
+}
+
+.Copy{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 100%;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+    font-size: 14px;
+}
+.Copy hr{
+    width: 80%;
+    border: none;
+    border-radius: 1px;
+    height: 1px;
+    background: #c7c7c7;
+}
