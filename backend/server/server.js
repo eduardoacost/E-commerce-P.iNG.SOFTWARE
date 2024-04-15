@@ -10,8 +10,8 @@ class Server {
 
     this.paths = {
       auth: "/api/auth",
-      task: "/api/task",
       catalogo: "/api/catalogo"
+
     };
 
     this.connectToDB();
@@ -25,17 +25,13 @@ class Server {
   }
 
   addMiddlewares() {
-    //CORS
     this.app.use(cors());
-
     this.app.use(express.json());
-
-    this.app.use(express.static("public"));
+    this.app.use(express.urlencoded({ extended: true }));
   }
 
   setRoutes() {
     this.app.use(this.paths.auth, require("../routes/auth.js"));
-    this.app.use(this.paths.task, require("../routes/task.js"));
     this.app.use(this.paths.catalogo, require("../routes/catalogo.js"));
 
   }
@@ -44,6 +40,8 @@ class Server {
     this.app.listen(this.port, () => {
       //callback
       console.log("Servidor corriendo en puerto:", process.env.PORT);
+      console.log("Ejecutando", process.env.VERSION);
+
     });
   }
 }
