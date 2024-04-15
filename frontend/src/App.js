@@ -7,6 +7,8 @@ import Productos from './Pages/Productos/Productos';
 import Contactanos from './Pages/Contactanos/Contactanos';
 import Login from './Pages/Login/Login';
 import Carrito from './Pages/Carrito/Carrito';
+import Footer from './Components/Footer/Footer';
+import Registrar from './Pages/Registrarse/Registrer';
 
 
 function App() {
@@ -22,8 +24,9 @@ function App() {
             <Route path='/Contactanos' element={<Contactanos/>}/>
             <Route path='/Login' element={<Login/>}/>
             <Route path='/Carrito' element={<Carrito/>}/>
+            <Route path='/Registrar' element={<Registrar/>}/>
           </Routes>
-         
+         <Footer/>
       </BrowserRouter>
       
     </div>
