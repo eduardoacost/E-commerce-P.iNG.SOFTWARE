@@ -78,6 +78,82 @@ const eliminarArticulo = async (req, res) => {
   }
 };
 
-module.exports = { añadirArticulo, actualizarArticulo, eliminarArticulo };
+const buscarArticulos = async (req, res) => {
+
+  try {
+
+    const pageSize = 6;
+    const keyword = req.query.keyword ? {
+      name: {
+        $regex: req.query.keyword,
+        $options: 'i'
+      }
+    } : {};
+    
+
+    const count = await Articulo.countDocuments({ ...keyword });
+    const articulos = await Articulo.find({ ...keyword }).limit(pageSize);
+
+    res.json({ 
+      articulos,
+     page: 1, 
+     pages: Math.ceil(count / pageSize),
+     hasMore: false,
+  });
+
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({error: 'Error interno'});
+  }
+
+
+
+};
+
+
+const buscarArticuloPorId = async (req, res) => {
+
+  try {
+
+    const articulo = await Articulo.findById(req.params.id);
+
+    if (articulo){
+      return res.json(articulo)
+    }else{
+      res.status(404);
+      throw new Error('No se encontró el articulo');
+    }
+
+  } catch (error) {
+
+    console.error(error)
+    res.status(404).json({error: 'No se encontró el producto'});
+    
+  }
+
+
+};
+
+const buscarTodosLosArticulos = async (req, res) => {
+
+try {
+
+  const articulos = await Articulo.find({}).limit(12).sort({createAt: -1});
+  res.json(articulos);
+
+
+  
+} catch (error) {
+
+console.error(error)
+res.status(500).json({error: 'Error interno'});
+  
+}
+
+}
+
+
+module.exports = { añadirArticulo, actualizarArticulo, eliminarArticulo, buscarArticulos, buscarArticuloPorId, buscarTodosLosArticulos };
 
  
