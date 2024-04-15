@@ -10,8 +10,8 @@ class Server {
 
     this.paths = {
       auth: "/api/auth",
-      catalogo: "/api/catalogo"
-
+      catalogo: "/api/catalogo",
+      articulos: "/api/articulos"
     };
 
     this.connectToDB();
@@ -28,12 +28,13 @@ class Server {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
+  
   }
 
   setRoutes() {
     this.app.use(this.paths.auth, require("../routes/auth.js"));
     this.app.use(this.paths.catalogo, require("../routes/catalogo.js"));
-
+    this.app.use(this.paths.articulos, require("../routes/articulos.js"));
   }
 
   listen() {

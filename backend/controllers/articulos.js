@@ -1,0 +1,159 @@
+const Articulo = require("../models/articulo");
+
+const añadirArticulo = async (req, res) => {
+  try {
+    const { nombre, precioUnitario, serial, stock, comentario, isPersonalizable } = req.body;
+
+    // Validación
+    if (!nombre) {
+      return res.json({ error: "El nombre es obligatorio" });
+    }
+    if (!serial) {
+      return res.json({ error: "El serial es obligatorio" });
+    }
+    if (!stock) {
+      return res.json({ error: "El stock es obligatorio" });
+    }
+    if (!comentario) {
+      return res.json({ error: "El comentario es obligatorio" });
+    }
+    if (isPersonalizable === undefined) {
+      return res.json({ error: "El campo personalizable es obligatorio" });
+    }
+
+    let articulo = new Articulo(req.body);
+    await articulo.save();
+    res.json(articulo);
+  } catch (error) {
+    console.error(error);
+    res.status(400).json(error.message);
+  }
+};
+
+const actualizarArticulo = async (req, res) => {
+    try{
+        const { nombre, precioUnitario, serial, stock, comentario, isPersonalizable } = req.body;
+
+    // Validación
+    if (!nombre) {
+      return res.json({ error: "El nombre es obligatorio" });
+    }
+    if (!serial) {
+      return res.json({ error: "El serial es obligatorio" });
+    }
+    if (!stock) {
+      return res.json({ error: "El stock es obligatorio" });
+    }
+    if (!comentario) {
+      return res.json({ error: "El comentario es obligatorio" });
+    }
+    if (isPersonalizable === undefined) {
+      return res.json({ error: "El campo personalizable es obligatorio" });
+    }
+
+    const articulo = await Articulo.findByIdAndUpdate(req.params.id,req.body,{new:true});
+   
+     await articulo.save();
+   
+    res.json(articulo);
+
+    }catch(error){
+        console.error(error)
+        res.status(400).json(error.message)
+    
+    }
+
+}
+
+const eliminarArticulo = async (req, res) => {
+  try {
+  
+    const articulo = await Articulo.findByIdAndDelete(req.params.id);
+
+    res.json(articulo);
+    
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({error: 'Error interno'});
+  }
+};
+
+const buscarArticulos = async (req, res) => {
+
+  try {
+
+    const pageSize = 6;
+    const keyword = req.query.keyword ? {
+      name: {
+        $regex: req.query.keyword,
+        $options: 'i'
+      }
+    } : {};
+    
+
+    const count = await Articulo.countDocuments({ ...keyword });
+    const articulos = await Articulo.find({ ...keyword }).limit(pageSize);
+
+    res.json({ 
+      articulos,
+     page: 1, 
+     pages: Math.ceil(count / pageSize),
+     hasMore: false,
+  });
+
+
+  } catch (error) {
+    console.error(error)
+    res.status(500).json({error: 'Error interno'});
+  }
+
+
+
+};
+
+
+const buscarArticuloPorId = async (req, res) => {
+
+  try {
+
+    const articulo = await Articulo.findById(req.params.id);
+
+    if (articulo){
+      return res.json(articulo)
+    }else{
+      res.status(404);
+      throw new Error('No se encontró el articulo');
+    }
+
+  } catch (error) {
+
+    console.error(error)
+    res.status(404).json({error: 'No se encontró el producto'});
+    
+  }
+
+
+};
+
+const buscarTodosLosArticulos = async (req, res) => {
+
+try {
+
+  const articulos = await Articulo.find({}).limit(12).sort({createAt: -1});
+  res.json(articulos);
+
+
+  
+} catch (error) {
+
+console.error(error)
+res.status(500).json({error: 'Error interno'});
+  
+}
+
+}
+
+
+module.exports = { añadirArticulo, actualizarArticulo, eliminarArticulo, buscarArticulos, buscarArticuloPorId, buscarTodosLosArticulos };
+
+ 

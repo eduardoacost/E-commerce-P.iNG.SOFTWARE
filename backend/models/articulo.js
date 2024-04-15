@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const { Schema, model } = require("mongoose");
 
 const articuloSchema = Schema({
@@ -29,7 +30,8 @@ const articuloSchema = Schema({
   },
 
   comentario: {
-    type: Schema.Types.ObjectId,
+    //type: Schema.Types.ObjectId,
+    type: String,
     ref: "comentario",
   },
 
@@ -44,4 +46,5 @@ const articuloSchema = Schema({
   },
 });
 
-module.exports = model("articulo", articuloSchema);
+const Articulo = mongoose.model("Articulo", articuloSchema);
+module.exports = Articulo;
