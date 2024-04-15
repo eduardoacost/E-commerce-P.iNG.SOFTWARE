@@ -10,7 +10,6 @@ class Server {
 
     this.paths = {
       auth: "/api/auth",
-      task: "/api/task",
       catalogo: "/api/catalogo",
       articulos: "/api/articulos"
     };
@@ -34,7 +33,6 @@ class Server {
 
   setRoutes() {
     this.app.use(this.paths.auth, require("../routes/auth.js"));
-    this.app.use(this.paths.task, require("../routes/task.js"));
     this.app.use(this.paths.catalogo, require("../routes/catalogo.js"));
     this.app.use(this.paths.articulos, require("../routes/articulos.js"));
   }
