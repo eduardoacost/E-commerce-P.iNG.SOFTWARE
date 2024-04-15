@@ -47,11 +47,11 @@ const crearUsuario = asyncHandler(async (req, res) => {
   }
 });
 
-const loginUsuario = async (req, res = express.request) => {
+const loginUsuario = asyncHandler (async (req, res) => {
   const { correo, password } = req.body;
 
   try {
-    let usuario = await Usuario.findOne({ correo: correo });
+    let usuario = await Usuario.findOne({ correo });
     if (!usuario) {
       return res.status(400).json({
         ok: false,
@@ -67,11 +67,10 @@ const loginUsuario = async (req, res = express.request) => {
       });
     }
 
-    const token = await generarToken(usuario.identificacion, usuario.username);
+    const token = generarToken(res, usuario._id);
 
     res.status(200).json({
       ok: true,
-      token,
       msg: "Bienvenido " + usuario.username + " Login correcto",
     });
   } catch (error) {
@@ -81,17 +80,17 @@ const loginUsuario = async (req, res = express.request) => {
       error,
     });
   }
-};
+});
 
-const revalidarToken = async (req, res = express.request) => {
-  const { uid, name } = req;
-  const token = await generarToken(uid, name);
+const revalidarToken = asyncHandler( async (req, res) => {
+  const { uid } = req;
+  const token = await generarToken(uid);
 
   res.json({
     ok: true,
     token,
   });
-};
+});
 
 module.exports = {
   loginUsuario,
