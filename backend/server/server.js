@@ -11,7 +11,6 @@ class Server {
     this.paths = {
       auth: "/api/auth",
       catalogo: "/api/catalogo"
-
     };
 
     this.connectToDB();
