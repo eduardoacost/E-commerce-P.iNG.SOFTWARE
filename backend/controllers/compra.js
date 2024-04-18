@@ -93,7 +93,6 @@ const buscarCompraPorConsecutivo = asyncHandler(async (req, res) => {
   } 
 });
 
-
 module.exports = {
   obtenerCompras,
   agregarCompra,
