@@ -91,10 +91,6 @@ const buscarCompraPorConsecutivo = async (req, res) => {
   }
 };
     res.json({ mensaje: 'Compra actualizada exitosamente.', CompraUpd: compraActualizada });
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al actualizar la compra', error: error.message });
-  }
-});
 
 
 module.exports = {
