@@ -75,13 +75,22 @@ const actualizarCompra = async (req, res) => {
   }
 };
 
+
 const buscarCompraPorConsecutivo = asyncHandler(async (req, res) => {
   const { consecutivo } = req.body; // Asume que el consecutivo viene en el cuerpo de la solicitud
 
   try {
     const Compra = await compra.findOne({ 'compraItems.consecutivo': consecutivo });
 
-    res.json({ mensaje: 'Compra actualizada exitosamente.', CompraUpd: compraActualizada });
+    if (!Compra) {
+      return res.status(404).json({ mensaje: 'Compra no encontrada.' });
+    }
+
+    res.json(Compra);
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al buscar la compra', error: error.message });
+  }
+};
 
     if (!Compra) {
       return res.status(404).json({ mensaje: 'Compra no encontrada.' });
