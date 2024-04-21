@@ -87,19 +87,11 @@ const buscarCompraPorConsecutivo = asyncHandler(async (req, res) => {
     }
 
     res.json(Compra);
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al buscar la compra', error: error.message });
-  }
-};
 
-    if (!Compra) {
-      return res.status(404).json({ mensaje: 'Compra no encontrada.' });
-    }
-
-    res.json(Compra);
   } catch (error) {
+    
     res.status(500).json({ mensaje: 'Error al buscar/actualizar la compra', error: error.message });
-  } 
+  }
 });
 
 module.exports = {
