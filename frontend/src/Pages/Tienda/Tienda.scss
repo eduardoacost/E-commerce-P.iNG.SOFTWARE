@@ -1,0 +1,78 @@
+.Tienda{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.titulo1{
+    margin-left: -66%;
+    font-size: 17pt;
+    font-weight: 700;
+    word-break: break-word;
+    width: 15%;
+}
+
+.titulo1 hr{
+    border: none;
+    width: 90%;
+    height: 3px;
+    border-radius: 10px;
+    background: #438DB8;
+    margin-left: -2%;
+}
+.listaarticulos{
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    margin-left: -65%;
+    margin-top: -3.5%;
+}
+.articulosdes{
+    width: 60%;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 1px;
+    border: 1px solid black;
+    margin-bottom: 10%;
+    margin-left: 35%;
+    margin-top: -15%;
+}
+.banners{
+    display: flex;
+    gap: 20px;
+    margin-bottom: 1%;
+}
+
+.titulo2{
+    font-size: 26pt;
+    color: #666666;
+    font-weight: 700;
+}
+.titulo2 hr{
+    border: none;
+    width: 90%;
+    height: 4px;
+    border-radius: 10px;
+    background: #438DB8;
+}
+
+.articuin{
+    width: 80%; /* Ancho del contenedor */
+    margin: 0 auto; /* Centrar el contenedor */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 1px;
+    border: 1px solid black;
+    margin-bottom: 3%;
+    margin-top: -3%;
+}
+.producs{
+    display: flex;
+    align-items: center;
+    margin-left: 16%;
+    margin-bottom: 2%;
+}
+.producs img{
+    width: 83%;
+}
