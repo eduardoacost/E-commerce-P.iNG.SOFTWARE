@@ -145,6 +145,7 @@ const buscarTodosLosArticulos = async (req, res) => {
   }
 };
 
+
 module.exports = {
   añadirArticulo,
   actualizarArticulo,
