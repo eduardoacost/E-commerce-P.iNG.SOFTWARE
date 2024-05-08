@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import './Tienda.scss';
 import Hero from "../../Components/Hero/Hero";
 import bann1 from "../../Components/Assets/Frame 2.png";
 import bann2 from "../../Components/Assets/Frame 3.png";
 import bann3 from "../../Components/Assets/Frame 4.png";
 import produ from "../../Components/Assets/Products.png";
+import axios from "axios";
 
 const Tienda = () => {
+    const [productos, setProductos] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:4000/api/articulos/') // Utilizamos Axios para hacer la solicitud HTTP
+            .then(response => {
+                setProductos(response.data.articulos);
+            })
+            .catch(error => console.error('Error al obtener los productos:', error));
+    }, []);
     return(
         <div className="Tienda">
             <Hero/>
@@ -28,7 +38,19 @@ const Tienda = () => {
                 <li>Sudaderas</li>
             </div>
             <div className="articulosdes">
-                <p>Articulos en Descuento</p>
+                <div className="proddes">
+                    {productos && productos.slice(0, 4).map(producto => (
+                        // Renderizar los productos en descuento
+                        <div key={producto._id} className="productosss">
+                            <img src={producto.imagen} alt={producto.nombre} />
+                            <div>
+                            <p>{producto.nombre}
+                            - ${producto.precioUnitario}</p>
+                            </div>
+                        </div>
+                    ))}
+                
+                </div>
             </div>
             <div className="banners">
                 <img src={bann1} alt="" />
@@ -39,7 +61,16 @@ const Tienda = () => {
                 Productos Que Te Pueden Gustar
             <hr/></p>
             <div className="articuin">
-                <p>Articulos Interesantes</p>
+                <div className="prodeuni">
+                    {productos && productos.slice(0, 10).map(producto => (
+                        // Renderizar los productos en descuento
+                        <div key={producto._id} className="productosinte">
+                            <img src={producto.imagen} alt={producto.nombre} />
+                            <p>{producto.nombre}
+                            - ${producto.precioUnitario}</p>
+                        </div>
+                    ))}
+               </div>
             </div>
             <div className="producs">
                 <img src={produ} alt="" />

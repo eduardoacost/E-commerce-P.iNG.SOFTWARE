@@ -166,11 +166,12 @@ const buscarTodosLosArticulos = async (req, res) => {
 };
 
 
+
 module.exports = {
   añadirArticulo,
   actualizarArticulo,
   eliminarArticulo,
   buscarArticulos,
   buscarArticuloPorId,
-  buscarTodosLosArticulos,
+  buscarTodosLosArticulos
 };
