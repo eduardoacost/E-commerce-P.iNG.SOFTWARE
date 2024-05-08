@@ -12,6 +12,11 @@ const articuloSchema = Schema({
     require: true,
   },
 
+  descripcion: {
+    type: String,
+    require: true,
+  },  
+
   precioUnitario: {
     type: Number,
     require: true,
@@ -43,10 +48,11 @@ const articuloSchema = Schema({
     ref: "imagen",
     require: false,
   },
+
   isPersonalizable: {
     type: Boolean,
     require: true,
-  },
+  }
 });
 
 module.exports = model("Articulo", articuloSchema);
