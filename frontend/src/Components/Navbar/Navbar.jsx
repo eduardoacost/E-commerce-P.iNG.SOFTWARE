@@ -24,17 +24,9 @@ const Navbar = () => {
             <li onClick={() => {setMenu('Contactanos')}}><Link style={{textDecoration:'none'}} to='/Contactanos'>Contactanos</Link>{menu === "Contactanos"?<hr/>:<></>}</li>
         </ul>
         <div className="nav-login-cart">
-            {/* Mostrar el nombre del usuario si está autenticado, de lo contrario, mostrar el botón de inicio de sesión */}
-            {user ? (
-                    <div className="dropdown">
-                        <button className="dropbtn">{user.username}</button>
-                        <div className="dropdown-content">
-                            <button onClick={logout}>Logout</button>
-                        </div>
-                    </div>
-                ) : (
-                    <Link to='/Login'><button>Registrar/Inicio</button></Link>
-                )}
+            {localStorage.getItem('auth-token')
+            ? <button onClick={()=>{localStorage.removeItem('auth-token');window.location.replace("/")}}>Cerrar Sesion</button>
+            :<Link to='/Login'><button>Registrar/Inicio</button></Link>}
             <Link to='/Carrito'><img src={cart_icon} alt="" /></Link>
             <div className="nav-cart-count">{getTotalCartItems()}</div>
         </div>
