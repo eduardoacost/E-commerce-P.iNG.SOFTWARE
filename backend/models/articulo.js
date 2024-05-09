@@ -1,21 +1,12 @@
 const { Schema, model } = require("mongoose");
 
 const articuloSchema = Schema({
-  serial: {
-    type: String,
-    require: true,
-    unique: true,
-  },
+  
 
   nombre: {
     type: String,
     require: true,
   },
-
-  descripcion: {
-    type: String,
-    require: true,
-  },  
 
   precioUnitario: {
     type: Number,
@@ -25,18 +16,33 @@ const articuloSchema = Schema({
   categoria: {
     type: Schema.Types.ObjectId,
     ref: "categoria",
-    require: false,
+    require: true,
   },
 
-  stock: {
+  stock: [{
     type: Number,
     require: true,
-    talla:{
-      type: String,
-      require: true,
-      ref : "talla"
-    }
-  },
+    xl: 
+      {
+        type: Number,
+        require: true,
+      },
+    l: 
+      {
+        type: Number,
+        require: true,
+      },
+    m: 
+      {
+        type: Number,
+        require: true,
+      },
+    s: 
+      {
+        type: Number,
+        require: true,
+      },
+  }],
 
   comentario: {
     type: String,
@@ -48,11 +54,10 @@ const articuloSchema = Schema({
     ref: "imagen",
     require: false,
   },
-
   isPersonalizable: {
     type: Boolean,
     require: true,
-  }
+  },
 });
 
 module.exports = model("Articulo", articuloSchema);
