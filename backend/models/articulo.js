@@ -8,6 +8,11 @@ const articuloSchema = Schema({
     require: true,
   },
 
+  descripcion: {
+    type: String,
+    require: true,
+  },
+
   precioUnitario: {
     type: Number,
     require: true,

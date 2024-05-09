@@ -97,6 +97,7 @@ const loginUsuario = asyncHandler(async (req, res = express.request) => {
       return res.status(200).json({
       msg: "Bienvenido ADMINISTRADOR " + usuario.username + " Login correcto",
       isAdmin: true,
+      token
       });
     }
 
