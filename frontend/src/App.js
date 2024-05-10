@@ -12,6 +12,8 @@ import Registrar from './Pages/Registrarse/Registrer';
 import Phombre from './Pages/Productos/P.hombre/Phombre';
 import Pmujer from './Pages/Productos/P.mujer/Pmujer';
 import PreviwProd from './Pages/PreviewProd/PreviwProd';
+import Compra from './Pages/Compras/Compra';
+import Añaarti from './Pages/Admin-Articulos/Añaarti';
 
 function App() {
   return (
@@ -30,6 +32,9 @@ function App() {
             <Route path='/Registrar' element={<Registrar/>}/>
             <Route path='/Phombre' element={<Phombre/>}/>
             <Route path='/Pmujer' element={<Pmujer/>}/>
+            <Route path='/Compra' element={<Compra/>}/>
+            <Route path='/AñadirArticulos' element={<Añaarti/>}/>
+
           </Routes>
          <Footer/>
       </BrowserRouter>

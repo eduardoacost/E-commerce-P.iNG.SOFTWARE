@@ -41,17 +41,15 @@ const ProductDisplay = ({ selectedProductId }) =>{
                     ROLOLOLOLO
                 </div>
                 <div className="productdisplay-right-size">
-                    <h1>Select Size</h1>
+                    <h1>Tallas Disponibles</h1>
                     <div className="productdisplay-right-sizes">
                         <div>S</div>
                         <div>M</div>
                         <div>L</div>
                         <div>XL</div>
-                        <div>XXL</div>
                     </div>
                     <button onClick={()=>{addTOcart(selectedProduct._id)}}>AÑADIR AL CARRITO</button>
-                    <p className="productdisplay-right-category"><span>Category :</span>Zapatos</p>
-                    <p className="productdisplay-right-category"><span>Tags :</span>Modern, Lastest</p>
+                    
                 </div>
             </div>
         </div>

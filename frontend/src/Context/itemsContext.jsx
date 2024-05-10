@@ -54,9 +54,20 @@ export const ItemProvider = ({ children }) => {
     }
     return totalItem; // Mover el return fuera del bucle
   }
+  const addArticleToDatabase = async (newArticle) => {
+    try {
+      const response = await axios.post('http://localhost:4000/api/articulos/', newArticle);
+      const addedArticle = response.data;
+      setProductos(prev => [...prev, addedArticle]);
+      setCartItems(prev => ({ ...prev, [addedArticle._id]: 0 }));
+      console.log("Artículo agregado correctamente:", addedArticle);
+    } catch (error) {
+      console.error('Error al agregar el artículo:', error);
+    }
+  };
  
   return (
-    <itemContext.Provider value={{ products, cartItems,addTOcart,removeFormcart, getTotalcarAmount, getTotalCartItems }}>
+    <itemContext.Provider value={{ products, cartItems,addTOcart,removeFormcart, getTotalcarAmount, getTotalCartItems,addArticleToDatabase }}>
       {children}
     </itemContext.Provider>
   );

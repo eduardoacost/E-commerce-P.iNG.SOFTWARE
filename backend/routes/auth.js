@@ -17,6 +17,7 @@ router.delete("/delete", borrarUsuario);
 
 router.get("/userinfo", authMiddleware, getUserInfo); 
 
+
 router.post(
   "/new",
   [

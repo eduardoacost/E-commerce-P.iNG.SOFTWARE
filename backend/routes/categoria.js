@@ -8,6 +8,6 @@ router.route("/crearcat").post(crearCategoria);
 router.route('/:IdCategoria').put(actualizarCategoria);
 router.route('/:IdCategoria').delete(eliminarCategoria);
 router.route('/categorias').get(listarCategorias);
-router.route('/:id').get(buscarCategoria);
+router.route('/_id').get(buscarCategoria);
 
 module.exports = router;

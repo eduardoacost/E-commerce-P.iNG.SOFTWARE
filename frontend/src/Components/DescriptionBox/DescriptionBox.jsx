@@ -11,7 +11,7 @@ const DescriptionBox = ({ selectedProductId }) =>{
         <div className="descriptionbox">
             <div className="descriptionbox-navigator">
                 <div className="descriptionbox-nav-box">Descripcion</div>
-                <div className="descriptionbox-nav-box fade">Comentarios (122)</div>
+                <div className="descriptionbox-nav-box fade">Comentarios </div>
 
             </div>
             <div className="descriptionbox-description">

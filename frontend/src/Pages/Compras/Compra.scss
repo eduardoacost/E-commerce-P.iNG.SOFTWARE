@@ -1,0 +1,146 @@
+.Compra{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 70%;
+    margin-bottom: 3%;
+    margin-top: 3%;
+    margin-left: 13%;
+    background: #f8f8f8;
+}
+.Titulocom{
+    
+    color: #438DB8;
+}
+
+.Compra hr{
+    height: 3px;
+    border-radius: 1px;
+    background: black;
+    width: 80%;
+    margin-top: -1.5%;
+}
+.dir{
+    margin-left: -85%;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.dir input{
+    margin-top: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}
+
+.ciu{
+    margin-left: -85%;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10%;
+}
+
+.ciu input{
+    margin-top: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}
+
+.barrio{
+    margin-left: -85%;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10%;
+}
+
+.barrio input{
+    margin-top: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}
+
+.Codp{
+    margin-left: 65%;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: -71%;
+}
+
+.Codp input{
+    margin-top: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}
+
+.Obse{
+    margin-left: 65%;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10%;
+}
+
+.Obse textarea{
+    margin-top: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}
+
+.metod{
+    margin-left: 65%;
+    font-size: 18px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 7%;
+}
+
+.metod select{
+    margin-top: 2%;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}
+
+.btoncom{
+    margin-top: 20%;
+    margin-bottom: 20%;
+    outline: none;
+    border: none;
+    background: #438DB8;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 10vh;
+    width: 262px;
+}

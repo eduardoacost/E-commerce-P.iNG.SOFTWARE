@@ -1,40 +1,84 @@
-import React, {useContext} from 'react'
-import "./CartItems.scss"
-import {itemContext} from "../Context/itemsContext";
-import removeicon from "../Components/Assets/cart_cross_icon.png"
-import imagenremplazable from "../Components/Assets/product_1.png"
+import React, { useContext, useState } from 'react';
+import "./CartItems.scss";
+import { itemContext } from "../Context/itemsContext";
+import removeicon from "../Components/Assets/cart_cross_icon.png";
+import imagenremplazable from "../Components/Assets/product_1.png";
+import { Link } from 'react-router-dom';
 
 const Cartitems = () => {
-const { products, cartItems, removeFormcart,getTotalcarAmount } = useContext(itemContext);
-  return (
-    <div className='cartitems'>
-        <div className="cartitems-format-main">
-            <p>Productos</p>
-            <p>Titulo</p>
-            <p>Precio</p>
-            <p>Cantidad</p>
-            <p>Total</p>
-            <p>Borrar</p>
-        </div>
-        <hr />
-        <div>
-            {products && products.map(e=>{
-                if(cartItems[e._id]>0){
-                    return <div key={e._id}>
-                            <div className="cartimes-format cartitems-format-main">
-                            <img src={e.imagen} alt={e.nombre}className='carticon-product-icon' />
-                            <p>{e.nombre}</p>
-                            <p>{e.precioUnitario}</p>
-                            <button className='cartitmes-cantidad'>{cartItems[e._id]}</button>
-                            <p>${e.precioUnitario*cartItems[e._id]} </p>
-                            <img className="cart-remove-icon"src={removeicon} onClick={()=>{removeFormcart(e._id)}} alt="" />
-                        </div>
-                        <hr />
-                    </div>
+    const { products, cartItems, removeFormcart, getTotalcarAmount } = useContext(itemContext);
+    const [selectedSizes, setSelectedSizes] = useState({});
+
+    const handleSizeChange = (productId, newSize) => {
+        setSelectedSizes({ ...selectedSizes, [productId]: newSize });
+    }
+
+    // Función para obtener los productos en el carrito
+    const getProductosEnCarrito = () => {
+        const productosEnCarrito = [];
+        for (const id in cartItems) {
+            if (cartItems[id] > 0) {
+                const producto = products.find(producto => producto._id === id);
+                if (producto) {
+                    productosEnCarrito.push({
+                        id: producto._id,
+                        nombre: producto.nombre,
+                        precioUnitario: producto.precioUnitario,
+                        cantidad: cartItems[id],
+                        talla: selectedSizes[producto._id] || '', // Agregar la talla seleccionada
+                    });
                 }
-                return null;
-            })}
-            <div className="cartitems-down">
+            }
+        }
+        return productosEnCarrito;
+    };
+
+    const productosEnCarrito = getProductosEnCarrito();
+
+
+    return (
+        <div className='cartitems'>
+            <div className="cartitems-format-main">
+                <p>Productos</p>
+                <p>Titulo</p>
+                <p>Talla</p>
+                <p>Precio</p>
+                <p>Cantidad</p>
+                <p>Total</p>
+                <p>Borrar</p>
+            </div>
+            <hr />
+            <div>
+                {products && products.map(product => {
+                    if (cartItems[product._id] > 0) {
+                        return (
+                            <div key={product._id}>
+                                <div className="cartimes-format cartitems-format-main">
+                                    <img src={product.imagen} alt={product.nombre} className='carticon-product-icon' />
+                                    <p>{product.nombre}</p>
+                                    <div>
+                                        <select className='droptallas'
+                                            value={selectedSizes[product._id] || ''}
+                                            onChange={(e) => handleSizeChange(product._id, e.target.value)}
+                                        >
+                                            <option value="">Selecciona Talla</option>
+                                            {Object.keys(product.stock.tallas).map(talla => (
+                                                <option key={talla} value={talla}>{`${talla} (${product.stock.tallas[talla]} disponible)`}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <p>{product.precioUnitario}</p>
+                                    <button className='cartitmes-cantidad'>{cartItems[product._id]}</button>
+                                    <p>${product.precioUnitario * cartItems[product._id]}</p>
+                                    <img className="cart-remove-icon" src={removeicon} onClick={() => { removeFormcart(product._id) }} alt="" />
+                                </div>
+                                <hr />
+                            </div>
+                        );
+                    }
+                    return null;
+                })}
+                <div className="cartitems-down">
                 <div className="cartitems-total">
                     <h1>Total Carrito</h1>
                     <div>
@@ -53,7 +97,9 @@ const { products, cartItems, removeFormcart,getTotalcarAmount } = useContext(ite
                             <h3>${getTotalcarAmount()}</h3>
                         </div>
                     </div>
-                    <button>PROCEDER AL CHECKOUT</button>
+                    <Link to={`/Compra?productos=${encodeURIComponent(JSON.stringify(productosEnCarrito))}`}>
+                        <button>PROCEDER AL CHECKOUT</button>
+                    </Link>
                 </div>
                 <div className="cartitems-promocode">
                     <p>Si tienes un codigo de promocion,ingresalo aqui</p>
@@ -62,10 +108,10 @@ const { products, cartItems, removeFormcart,getTotalcarAmount } = useContext(ite
                         <button>Submit</button>
                     </div>
                 </div>
+                </div>
             </div>
         </div>
-    </div>
-  )
+    );
 }
 
-export default Cartitems
+export default Cartitems;

@@ -33,7 +33,7 @@ const crearUsuario = asyncHandler(async (req, res = express.request) => {
   //Guardar el usuario en la base de datos
   try {
     await usuario.save();
-    const token = await (generarToken(res, usuario._id));
+    const token = await (generarToken(res, usuario._id,usuario.isAdmin , usuario.isDisennador));
    
 
     //Enviar respuesta al cliente
@@ -82,23 +82,33 @@ const loginUsuario = asyncHandler(async (req, res = express.request) => {
     }
 
     //Generar token
-    const token = await (generarToken(res, usuario._id));
+    const token = await (generarToken(res, usuario._id , usuario.isAdmin , usuario.isDisennador));
     
     //Validar si el usuario es administrador
     let esAdministrador = await Usuario.findOne({ correo: correo, isAdmin: true });
+    let esDiseñador = await Usuario.findOne({ correo: correo, isDisennador: true });
     console.log('Objeto esAdministrador: '+esAdministrador);
-    if (!esAdministrador) {
+    if (!esAdministrador && !esDiseñador) {
       return res.status(200).json({
       msg: "Bienvenido " + usuario.username + " Login correcto",
       isAdmin: false,
+      isDisennador: false,
+      token
+      });
+    } if(esAdministrador && !esDiseñador) {
+      return res.status(200).json({
+      msg: "Bienvenido ADMINISTRADOR " + usuario.username + " Login correcto",
+      isAdmin: true,
+      isDisennador: false,
       token
       });
     } else {
       return res.status(200).json({
-      msg: "Bienvenido ADMINISTRADOR " + usuario.username + " Login correcto",
-      isAdmin: true,
-      token
-      });
+        msg: "Bienvenido Diseñador " + usuario.username + " Login correcto",
+        isAdmin: false,
+        isDisennador: true,
+        token
+        });
     }
 
     //Manejo de errores
@@ -161,7 +171,7 @@ const borrarUsuario = asyncHandler(async (req, res = express.request) => {
 const getUserInfo = asyncHandler(async (req, res) => {
   try {
     // El ID del usuario se extrae del token de autenticación
-    const userId = req.user.id;
+    const userId = req.usuario._id;
 
     // Buscar el usuario por su ID
     const usuario = await Usuario.findById(userId);

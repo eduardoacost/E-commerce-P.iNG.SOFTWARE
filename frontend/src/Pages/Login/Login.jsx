@@ -1,4 +1,4 @@
-import React , { useState, useContext }from "react";
+import React, { useState, useContext } from "react";
 import './Login.scss';
 import foton from "../../Components/Assets/image 22.png"
 import ojoabierto from "../../Components/Assets/ojo (1).png"
@@ -11,34 +11,34 @@ const Login = () => {
     const [mostrarContrasena, setMostrarContrasena] = useState(false);
     const { setUser } = useContext(UserContext);
 
-    const[datos,setDatos]=useState({
-        correo:"",
-        password:""
-
+    const [datos, setDatos] = useState({
+        correo: "",
+        password: ""
     });
-    const handleInputChange =(e) =>{
-        let{name,value} = e.target;
-        let newDatos = {...datos,[name]:value};
-        setDatos(newDatos);
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setDatos({ ...datos, [name]: value });
     }
+
     const handleSubmit = async () => {
         try {
-          const res = await axios.post("http://localhost:4000/api/auth/login", datos);
-          setUser(res.data.user); // Aquí asumimos que el backend devuelve el usuario al iniciar sesión
-          alert("Bienvenido" + res.data.msg);
-          console.log("bienvenido",datos);
-          localStorage.setItem('auth-token',res.data.token);
+            const res = await axios.post("http://localhost:4000/api/auth/login", datos);
+            setUser(res.data.user); // Establece el usuario en el contexto de usuario
+            alert("Bienvenido " + res.data.msg); // Mostrar mensaje de bienvenida
+            localStorage.setItem('auth-token', res.data.token); // Almacena el token en localStorage
+            window.location.href = "/"; // Redirige al usuario a la página principal
         } catch (error) {
-          console.error(error);
-          alert("Ingreso inválido");
+            console.error(error);
+            alert("Ingreso inválido");
         }
-      };
+    };
 
     const toggleMostrarContrasena = () => {
         setMostrarContrasena(!mostrarContrasena);
     }
 
-    return(
+    return (
         <div className="login">
             <div className="foton">
                 <img src={foton} alt="" />
@@ -51,16 +51,18 @@ const Login = () => {
             </div>
             <div className="info">
                 <p>Email</p>
-                <input type="email" 
-                name="correo"
-                value={datos.correo}
-                onChange={handleInputChange}/>
+                <input
+                    type="email"
+                    name="correo"
+                    value={datos.correo}
+                    onChange={handleInputChange}
+                />
                 <p>Contraseña</p>
-                 <div className="contrasena-input">
+                <div className="contrasena-input">
                     <input
                         type={mostrarContrasena ? "text" : "password"}
                         placeholder=""
-                        name="password"  
+                        name="password"
                         value={datos.password}
                         onChange={handleInputChange}
                     />
@@ -70,21 +72,15 @@ const Login = () => {
                         onClick={toggleMostrarContrasena}
                     />
                 </div>
-               
             </div>
             <div className="btlogon">
-            <Link to="/">
-                <button type="submit" onClick={handleSubmit}>Iniciar Sesion</button>
-            </Link>
+                <button type="submit" onClick={handleSubmit}>Iniciar Sesión</button>
             </div>
-
             <div className="register">
-            <Link style={{textDecoration:'none'}} to='/Registrar'><p>¿No tienes una cuenta?Registrate</p></Link>
+                <Link style={{ textDecoration: 'none' }} to='/Registrar'><p>¿No tienes una cuenta? Registrate</p></Link>
             </div>
-
         </div>
     )
 }
 
-export default Login
-
+export default Login;
