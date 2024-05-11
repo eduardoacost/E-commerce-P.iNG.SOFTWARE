@@ -86,7 +86,10 @@ const Navbar = () => {
                 <Link to="/ListaDiseños"><button>Lista de Diseños</button></Link>
             )}
              {!isAdmin && !isDesigner && localStorage.getItem('auth-token') &&(
+                
                 <Link to='/VerPedidos'><button>Ver Tus Pedidos</button></Link>
+
+            
             )}
             {!localStorage.getItem('auth-token') && (
                 <Link to='/Login'><button>Iniciar Sesión</button></Link>

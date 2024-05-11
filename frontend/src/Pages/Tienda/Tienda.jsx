@@ -15,23 +15,9 @@ const Tienda = () => {
         <div className="Tienda">
             <Hero/>
             <p className="titulo1">
-                Toda la Ropa Personalizada
+                Algunos de Nuestros Productos
                 <hr/>
             </p>
-            <div className="listaarticulos">
-                <li>Todas las camisetas</li>
-                <li>Camisetas</li>
-                <li>Camisetas all over</li>
-                <li>Polos</li>
-                <li>Camisetas de tirantes</li>
-                <li>Camisetas media manga</li>
-                <li>Camisetas manga larga</li>
-                <li>Camisetas bordadas</li>
-                <li>Chaquetas Personalizadas</li>
-                <li>Todas las sudaderas</li>
-                <li>Sudaderas con capuchas</li>
-                <li>Sudaderas</li>
-            </div>
             <div className="articulosdes">
                 <div className="proddes" >
                     {products && products.slice(0, 4).map(producto => (
@@ -52,13 +38,20 @@ const Tienda = () => {
                 <img src={bann3} alt="" />
             </div>
             <p className="titulo2">
-                Productos Que Te Pueden Gustar
+                Todos Nuestros Productos 
                 <hr/>
             </p>
+            <div className="filtros">
+                <button>Hombres</button>
+                <button>Mujeres</button>
+                <button>Acessorios</button>
+                <button>Personalizables</button>
+
+            </div>
             <div className="articuin">
                 <div className="prodeuni" style={{ textDecoration: 'none' }}>
-                    {products && products.slice(0, 10).map(producto => (
-                        <Link style={{ textDecoration: 'none' }} key={producto._id}  to={`/Preview/${producto._id}`}>
+                {products.map(producto => (
+                        <Link key={producto._id} to={`/Preview/${producto._id}`}>
                             <div className="productosinte">
                                 <img src={producto.imagen} alt={producto.nombre} />
                                 <p>{producto.nombre} - ${producto.precioUnitario}</p>

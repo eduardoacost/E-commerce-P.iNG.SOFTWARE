@@ -176,7 +176,6 @@ const eliminarArticulo = async (req, res) => {
 
 const buscarArticulos = async (req, res) => {
   try {
-    const pageSize = 6;
     const keyword = req.query.keyword
       ? {
           name: {
@@ -187,12 +186,12 @@ const buscarArticulos = async (req, res) => {
       : {};
 
     const count = await Articulo.countDocuments({ ...keyword });
-    const articulos = await Articulo.find({ ...keyword }).limit(pageSize);
+    const articulos = await Articulo.find({ ...keyword }); // Eliminamos el método limit()
 
     res.json({
       articulos,
       page: 1,
-      pages: Math.ceil(count / pageSize),
+      pages: Math.ceil(count / articulos.length),
       hasMore: false,
     });
   } catch (error) {
@@ -200,6 +199,7 @@ const buscarArticulos = async (req, res) => {
     res.status(500).json({ error: "Error interno" });
   }
 };
+
 
 const buscarArticuloPorId = async (req, res) => {
   try {

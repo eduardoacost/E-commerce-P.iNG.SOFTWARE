@@ -9,7 +9,12 @@ const Añaarti = () => {
     precioUnitario: 0,
     categoria: '', // Aquí debes incluir las propiedades adicionales según tu modelo
     stock: {
-      tallas: {},
+      tallas: {
+        S: 0,
+        M: 0,
+        L: 0,
+        XL: 0
+      },
       total: 0
     },
     comentario: '',
@@ -42,14 +47,57 @@ const Añaarti = () => {
     }));
   };
 
+  const handleStockChange = (e) => {
+    const { name, value } = e.target;
+    const { tallas } = newArticle.stock;
+    const newStock = {
+      ...newArticle.stock,
+      tallas: {
+        ...tallas,
+        [name]: parseInt(value)
+      },
+      total: Object.values({
+        ...tallas,
+        [name]: parseInt(value)
+      }).reduce((acc, curr) => acc + curr, 0)
+    };
+    setNewArticle(prevState => ({
+      ...prevState,
+      stock: newStock
+    }));
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await axios.post('http://localhost:4000/api/articulos/', newArticle); // Reemplaza 'puerto' con el puerto de tu servidor
       console.log('Artículo añadido correctamente');
-      // Puedes agregar lógica adicional aquí si lo necesitas, como actualizar el estado después de agregar el artículo
+      // Limpiar el formulario después de agregar el artículo
+      setNewArticle({
+        nombre: '',
+        descripcion: '',
+        precioUnitario: 0,
+        categoria: '',
+        stock: {
+          tallas: {
+            S: 0,
+            M: 0,
+            L: 0,
+            XL: 0
+          },
+          total: 0
+        },
+        comentario: '',
+        isPersonalizable: false,
+        imagen: ''
+      });
     } catch (error) {
       console.error('Error al añadir el artículo:', error);
+      // Mostrar el error en algún lugar visible del componente
+      // Por ejemplo, podrías agregar un estado para manejar los errores
+      // y luego mostrarlo en un elemento de tu JSX
+      // Ejemplo:
+      // setErrorMessage('Hubo un error al añadir el artículo. Por favor, inténtalo de nuevo más tarde.');
     }
   };
 
@@ -83,15 +131,28 @@ const Añaarti = () => {
           <input type="number" name="stock.total" value={newArticle.stock.total} onChange={handleChange} />
         </label>
         <label>
+          Stock por Talla:
+          <div>
+            <label>S:</label>
+            <input type="number" name="S" value={newArticle.stock.tallas.S} onChange={handleStockChange} />
+            <label>M:</label>
+            <input type="number" name="M" value={newArticle.stock.tallas.M} onChange={handleStockChange} />
+            <label>L:</label>
+            <input type="number" name="L" value={newArticle.stock.tallas.L} onChange={handleStockChange} />
+            <label>XL:</label>
+            <input type="number" name="XL" value={newArticle.stock.tallas.XL} onChange={handleStockChange} />
+          </div>
+        </label>
+        <label>
           Comentario:
           <input type="text" name="comentario" value={newArticle.comentario} onChange={handleChange} />
         </label>
         <label>
           Personalizable:
-          <input type="checkbox" name="isPersonalizable" checked={newArticle.isPersonalizable} onChange={handleChange} />
+          <input type="checkbox" name="isPersonalizable" checked={newArticle.isPersonalizable} onChange={(e) => setNewArticle(prevState => ({ ...prevState, isPersonalizable: e.target.checked }))} />
         </label>
         <label>
-          Imagen:
+          Url de la imagen:
           <input type="text" name="imagen" value={newArticle.imagen} onChange={handleChange} />
         </label>
         <button type="submit">Agregar Artículo</button>

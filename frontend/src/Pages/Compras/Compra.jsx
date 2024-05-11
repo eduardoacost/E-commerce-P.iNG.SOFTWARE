@@ -56,7 +56,7 @@ const Compra = () => {
         
         // Verificar si el usuario está autenticado antes de procesar la compra
         if (!isLoggedIn) {
-            // Redirigir al usuario a la página de inicio de sesión si no ha iniciado sesión
+            alert("no te has iniciado sesion")
             window.location.href = '/login';
             return;
         }
@@ -94,7 +94,7 @@ const compraItems = productosEnCarrito.map(producto => ({
             window.location.href = '/';
 
         } catch (error) {
-            alert("la talla selecionada no esta disponible");
+            alert("Error al realizar su compra llene todos los campos");
             console.error('Error al procesar la compra:', error);
         }
     };

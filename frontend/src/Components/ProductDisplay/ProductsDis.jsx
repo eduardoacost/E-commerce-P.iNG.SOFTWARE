@@ -38,7 +38,7 @@ const ProductDisplay = ({ selectedProductId }) =>{
                     <div className="productdisplay-right-pricesnew">${selectedProduct.precioUnitario}</div>
                 </div>
                 <div className="productdisplay-right-description">
-                    ROLOLOLOLO
+                    {selectedProduct.descripcion}
                 </div>
                 <div className="productdisplay-right-size">
                     <h1>Tallas Disponibles</h1>
