@@ -14,6 +14,7 @@ import Pmujer from './Pages/Productos/P.mujer/Pmujer';
 import PreviwProd from './Pages/PreviewProd/PreviwProd';
 import Compra from './Pages/Compras/Compra';
 import Añaarti from './Pages/Admin-Articulos/Añaarti';
+import Pedusu from './Pages/Listapedusu/Pedusu';
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
             <Route path='/Pmujer' element={<Pmujer/>}/>
             <Route path='/Compra' element={<Compra/>}/>
             <Route path='/AñadirArticulos' element={<Añaarti/>}/>
-
+            <Route path='/VerPedidos' element={<Pedusu/>}/>
           </Routes>
          <Footer/>
       </BrowserRouter>

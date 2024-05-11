@@ -22,6 +22,7 @@ const compraSchema = Schema({
         require: true,
       },
 
+
       stock: {
         type: {
           tallas: {

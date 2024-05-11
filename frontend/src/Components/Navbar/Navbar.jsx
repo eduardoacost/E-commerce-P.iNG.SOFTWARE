@@ -64,9 +64,7 @@ const Navbar = () => {
             <li>
                 <Link style={{ textDecoration: 'none' }} to='/'>Inicio</Link>
             </li>
-            <li>
-                <Link style={{ textDecoration: 'none' }} to='/Product'>Productos</Link>
-            </li>
+            
             <li>
                 <Link style={{ textDecoration: 'none' }} to='/Contactanos'>Contactanos</Link>
             </li>

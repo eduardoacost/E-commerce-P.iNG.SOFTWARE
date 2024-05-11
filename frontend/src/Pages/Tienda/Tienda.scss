@@ -150,3 +150,29 @@
       }
     }
 }
+
+.filtros{
+    display: flex;
+    margin-top: -2%;
+    margin-bottom: 3%;
+    gap: 50px;
+}
+
+.filtros button{
+    outline: none;
+    border: none;
+    background: #438DB8;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    height: 5vh;
+    width: 180px;
+}
+
+.filtros select{
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+}

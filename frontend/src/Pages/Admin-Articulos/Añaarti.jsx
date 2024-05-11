@@ -7,7 +7,7 @@ const Añaarti = () => {
     nombre: '',
     descripcion: '',
     precioUnitario: 0,
-    categoria: '', // Aquí debes incluir las propiedades adicionales según tu modelo
+    categoria: '',
     stock: {
       tallas: {
         S: 0,
@@ -19,7 +19,7 @@ const Añaarti = () => {
     },
     comentario: '',
     isPersonalizable: false,
-    imagen: '' // Asegúrate de agregar todos los campos necesarios del modelo
+    imagen: ''
   });
 
   const [categorias, setCategorias] = useState([]);
@@ -29,7 +29,7 @@ const Añaarti = () => {
     // Cargar categorías al montar el componente
     const fetchCategorias = async () => {
       try {
-        const response = await axios.get('http://localhost:4000/api/categoria/categorias'); // Reemplaza 'puerto' con el puerto de tu servidor
+        const response = await axios.get('http://localhost:4000/api/categoria/categorias');
         setCategorias(response.data);
       } catch (error) {
         console.error('Error al obtener las categorías:', error);
@@ -49,16 +49,18 @@ const Añaarti = () => {
 
   const handleStockChange = (e) => {
     const { name, value } = e.target;
+    // Verificar si el valor es negativo y si es así, establecerlo como 0
+    const newValue = parseInt(value) < 0 ? 0 : parseInt(value);
     const { tallas } = newArticle.stock;
     const newStock = {
       ...newArticle.stock,
       tallas: {
         ...tallas,
-        [name]: parseInt(value)
+        [name]: newValue
       },
       total: Object.values({
         ...tallas,
-        [name]: parseInt(value)
+        [name]: newValue
       }).reduce((acc, curr) => acc + curr, 0)
     };
     setNewArticle(prevState => ({
@@ -70,7 +72,7 @@ const Añaarti = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:4000/api/articulos/', newArticle); // Reemplaza 'puerto' con el puerto de tu servidor
+      await axios.post('http://localhost:4000/api/articulos/', newArticle);
       console.log('Artículo añadido correctamente');
       // Limpiar el formulario después de agregar el artículo
       setNewArticle({
@@ -93,11 +95,6 @@ const Añaarti = () => {
       });
     } catch (error) {
       console.error('Error al añadir el artículo:', error);
-      // Mostrar el error en algún lugar visible del componente
-      // Por ejemplo, podrías agregar un estado para manejar los errores
-      // y luego mostrarlo en un elemento de tu JSX
-      // Ejemplo:
-      // setErrorMessage('Hubo un error al añadir el artículo. Por favor, inténtalo de nuevo más tarde.');
     }
   };
 

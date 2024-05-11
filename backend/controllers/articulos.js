@@ -1,5 +1,16 @@
 const Articulo = require("../models/articulo");
 
+// Esta función te permitirá obtener todos los productos con su categoría
+const obtenerProductosConCategoria = async () => {
+  try {
+      const productos = await Articulo.find().populate('categoria');
+      return productos;
+  } catch (error) {
+      console.log(error);
+      throw new Error('Error al obtener los productos con categoría');
+  }
+};
+// Controlador para añadir un nuevo artículo
 const añadirArticulo = async (req, res) => {
   try {
     const {
@@ -9,10 +20,11 @@ const añadirArticulo = async (req, res) => {
       stock,
       comentario,
       isPersonalizable,
-      tallas, total
+      tallas,
+      total
     } = req.body;
 
-    // Validación
+    // Validación de campos obligatorios
     if (!nombre) {
       return res.json({ error: "El nombre es obligatorio" });
     }
@@ -31,7 +43,7 @@ const añadirArticulo = async (req, res) => {
     if (!stock) {
       return res.json({ error: "El stock es obligatorio" });
     }
-    //Validaciones stock
+    // Validación de stock
     if(stock.tallas){
       for(let talla in stock.tallas){
         if(stock.tallas[talla] < 0){
@@ -67,10 +79,9 @@ const añadirArticulo = async (req, res) => {
 
     const existeArticulo = await Articulo.findOne({ nombre });
 
-        if (existeArticulo) {
-
-            return res.json({ error: "El articulo ya existe" });
-        };
+    if (existeArticulo) {
+      return res.json({ error: "El articulo ya existe" });
+    };
 
     let articulo = new Articulo(req.body);
     await articulo.save();
@@ -81,23 +92,22 @@ const añadirArticulo = async (req, res) => {
   }
 };
 
+// Controlador para actualizar un artículo
 const actualizarArticulo = async (req, res) => {
   try {
     const {
       nombre,
       precioUnitario,
-      
       stock,
       comentario,
       isPersonalizable,
       imagen
     } = req.body;
 
-    // Validación
+    // Validación de campos obligatorios
     if (!nombre) {
       return res.json({ error: "El nombre es obligatorio" });
     }
-    
     if (!precioUnitario) {
       return res.json({ error: "El precio unitario es obligatorio" });
     }
@@ -110,7 +120,7 @@ const actualizarArticulo = async (req, res) => {
     if (!stock) {
       return res.json({ error: "El stock es obligatorio" });
     }
-    //Validaciones stock
+    // Validación de stock
     if(stock.tallas){
       for(let talla in stock.tallas){
         if(stock.tallas[talla] < 0){
@@ -163,6 +173,7 @@ const actualizarArticulo = async (req, res) => {
   }
 };
 
+// Controlador para eliminar un artículo
 const eliminarArticulo = async (req, res) => {
   try {
     const articulo = await Articulo.findByIdAndDelete(req.params.id);
@@ -174,33 +185,46 @@ const eliminarArticulo = async (req, res) => {
   }
 };
 
+// Controlador para buscar productos y filtrarlos por categoría si es necesario
 const buscarArticulos = async (req, res) => {
   try {
-    const keyword = req.query.keyword
-      ? {
-          name: {
-            $regex: req.query.keyword,
-            $options: "i",
-          },
-        }
-      : {};
+      const { categoria } = req.query; // Obtener la categoría del query string
 
-    const count = await Articulo.countDocuments({ ...keyword });
-    const articulos = await Articulo.find({ ...keyword }); // Eliminamos el método limit()
+      let articulos;
+      if (categoria && categoria !== 'Todos') {
+          // Si hay una categoría específica, filtrar los productos por esa categoría
+          const productosConCategoria = await obtenerProductosConCategoria();
+          articulos = productosConCategoria.filter(producto => producto.categoria.nombre === categoria);
+      } else {
+          // Si no se especifica una categoría o es "Todos", obtener todos los productos
+          const keyword = req.query.keyword
+              ? {
+                nombre: {
+                      $regex: req.query.keyword,
+                      $options: "i",
+                  },
+              }
+              : {};
 
-    res.json({
-      articulos,
-      page: 1,
-      pages: Math.ceil(count / articulos.length),
-      hasMore: false,
-    });
+          const count = await Articulo.countDocuments({ ...keyword });
+          articulos = await Articulo.find({ ...keyword }); // Eliminamos el método limit()
+
+          articulos = {
+              articulos,
+              page: 1,
+              pages: Math.ceil(count / articulos.length),
+              hasMore: false,
+          };
+      }
+
+      res.json(articulos);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "Error interno" });
+      console.error(error);
+      res.status(500).json({ error: "Error interno" });
   }
 };
 
-
+// Controlador para buscar un artículo por su ID
 const buscarArticuloPorId = async (req, res) => {
   try {
     const articulo = await Articulo.findById(req.params.id);
@@ -217,6 +241,7 @@ const buscarArticuloPorId = async (req, res) => {
   }
 };
 
+// Controlador para buscar todos los artículos
 const buscarTodosLosArticulos = async (req, res) => {
   try {
     const articulos = await Articulo.find({}).limit(12).sort({ createAt: -1 });
@@ -226,7 +251,6 @@ const buscarTodosLosArticulos = async (req, res) => {
     res.status(500).json({ error: "Error interno" });
   }
 };
-
 
 module.exports = {
   añadirArticulo,

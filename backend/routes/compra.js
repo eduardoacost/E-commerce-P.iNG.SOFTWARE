@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const { obtenerCompras, agregarCompra, eliminarCompra, actualizarCompra, buscarCompraPorConsecutivo} = require("../controllers/compra.js");
+const { obtenerCompras, agregarCompra, eliminarCompra, actualizarCompra, buscarCompraPorConsecutivo , obtenerComprasPorUsuario} = require("../controllers/compra.js");
 
 router
   .route("/")
@@ -13,5 +13,7 @@ router
   router.route("/del").delete(eliminarCompra)
   router.route("/upd").put(actualizarCompra)
   
+  router.route("/usuario").get(obtenerComprasPorUsuario);
+
 
 module.exports = router;

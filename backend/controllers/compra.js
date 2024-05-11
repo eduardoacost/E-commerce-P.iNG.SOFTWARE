@@ -142,10 +142,28 @@ const buscarCompraPorConsecutivo = asyncHandler(async (req, res) => {
   }
 });
 
+const obtenerComprasPorUsuario = asyncHandler(async (req, res) => {
+  try {
+    const userId = req.query.usuario;
+    const compras = await compra.find({ usuario: userId })
+      .populate({
+        path: 'compraItems.articulo',
+        select: 'imagen'
+      });
+    res.json(compras);
+  } catch (error) {
+    console.error('Error al obtener las compras por usuario:', error);
+    res.status(500).json({ mensaje: 'Error al obtener las compras por usuario', error: error.message });
+  }
+});
+
+
+
 module.exports = {
   obtenerCompras,
   agregarCompra,
   eliminarCompra,
   actualizarCompra,
-  buscarCompraPorConsecutivo
+  buscarCompraPorConsecutivo,
+  obtenerComprasPorUsuario
 };
