@@ -15,10 +15,7 @@ const ProductDisplay = ({ selectedProductId }) =>{
         <div className="productdisplay">
             <div className="productodisplay-left">
                 <div className="productdisplay-img-list">
-                    <img src={selectedProduct.imagen} alt={selectedProduct.nombre}/>
-                    <img src={selectedProduct.imagen} alt={selectedProduct.nombre}/>
-                    <img src={selectedProduct.imagen} alt={selectedProduct.nombre}/>
-                    <img src={selectedProduct.imagen} alt={selectedProduct.nombre}/>
+                
                 </div>
                 <div className="productdisplay-img">
                     <img className= "productdisplay-main-img" src={selectedProduct.imagen} alt={selectedProduct.nombre}/>
