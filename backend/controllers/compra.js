@@ -90,12 +90,34 @@ const agregarCompra = asyncHandler(async (req, res) => {
   }
 });
 
-const eliminarCompra = asyncHandler(async (req, res) => {
-  try {
-    const { consecutivo } = req.body;
-    const Compra = await compra.findOneAndDelete({ 'compraItems.consecutivo': consecutivo });
+const actualizarCompra = asyncHandler(async (req, res) => {
+  const compraId = req.params.id;
+  const nuevoEstado = req.body.estado;
 
-    if (!Compra) {
+  try {
+    const compraActualizada = await compra.findByIdAndUpdate(
+      compraId,
+      { estado: nuevoEstado },
+      { new: true, runValidators: true }
+    );
+
+    if (!compraActualizada) {
+      return res.status(404).json({ mensaje: 'Compra no encontrada.' });
+    }
+
+    res.json({ mensaje: 'Estado de compra actualizado exitosamente.', compraActualizada });
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al actualizar el estado de la compra', error: error.message });
+  }
+});
+
+const eliminarCompra = asyncHandler(async (req, res) => {
+  const compraId = req.params.id;
+
+  try {
+    const compraEliminada = await compra.findByIdAndDelete(compraId);
+
+    if (!compraEliminada) {
       return res.status(404).json({ mensaje: 'Compra no encontrada.' });
     }
 
@@ -105,25 +127,6 @@ const eliminarCompra = asyncHandler(async (req, res) => {
   }
 });
 
-const actualizarCompra = asyncHandler(async (req, res) => {
-  const compraId = req.body._id;
-
-  try {
-    const compraActualizada = await compra.findByIdAndUpdate(
-      compraId,
-      req.body,
-      { new: true, runValidators: true }
-    );
-
-    if (!compraActualizada) {
-      return res.status(404).json({ mensaje: 'Compra no encontrada.' });
-    }
-
-    res.json({ mensaje: 'Compra actualizada exitosamente.', compraActualizada });
-  } catch (error) {
-    res.status(500).json({ mensaje: 'Error al actualizar la compra', error: error.message });
-  }
-});
 
 const buscarCompraPorConsecutivo = asyncHandler(async (req, res) => {
   const { consecutivo } = req.body;

@@ -1,7 +1,8 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { itemContext } from '../../Context/itemsContext';
 import axios from 'axios';
-
+import "./Añarti.scss";
+import Eliminart from './EliminArt/Eliminart';
 const Añaarti = () => {
   const [newArticle, setNewArticle] = useState({
     nombre: '',
@@ -74,6 +75,7 @@ const Añaarti = () => {
     try {
       await axios.post('http://localhost:4000/api/articulos/', newArticle);
       console.log('Artículo añadido correctamente');
+      alert("Articulo Añadido")
       // Limpiar el formulario después de agregar el artículo
       setNewArticle({
         nombre: '',
@@ -99,9 +101,12 @@ const Añaarti = () => {
   };
 
   return (
-    <div>
+    <div >
+      <div className='añadirart'>
       <h2>Añadir Nuevo Artículo</h2>
+      <hr />
       <form onSubmit={handleSubmit}>
+        <div className="forms">
         <label>
           Nombre:
           <input type="text" name="nombre" value={newArticle.nombre} onChange={handleChange} />
@@ -153,8 +158,13 @@ const Añaarti = () => {
           <input type="text" name="imagen" value={newArticle.imagen} onChange={handleChange} />
         </label>
         <button type="submit">Agregar Artículo</button>
+        </div>
       </form>
+      </div>
+      <Eliminart/>
     </div>
+    
+    
   );
 };
 

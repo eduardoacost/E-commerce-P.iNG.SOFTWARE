@@ -32,7 +32,7 @@ const ProductDisplay = ({ selectedProductId }) =>{
                     <img src={star_icon} alt="" />
                     <img src={star_icon} alt="" />
                     <img src={star_dull} alt="" />
-                    <p>(122)</p>
+                    
                 </div>
                 <div className="productdisplay-right-prices">
                     <div className="productdisplay-right-pricesnew">${selectedProduct.precioUnitario}</div>

@@ -65,9 +65,37 @@ export const ItemProvider = ({ children }) => {
       console.error('Error al agregar el artículo:', error);
     }
   };
- 
+
+  const eliminarArticulo = async (itemId) => {
+    try {
+      await axios.delete(`http://localhost:4000/api/articulos/${itemId}`);
+      setProductos(prevProducts => prevProducts.filter(product => product._id !== itemId));
+      setCartItems(prevCartItems => {
+        const updatedCart = { ...prevCartItems };
+        delete updatedCart[itemId];
+        return updatedCart;
+      });
+      console.log("Artículo eliminado correctamente:", itemId);
+    } catch (error) {
+      console.error('Error al eliminar el artículo:', error);
+    }
+  };
+
+  const actualizarArticulo = async (itemId, newData) => {
+    try {
+      await axios.put(`http://localhost:4000/api/articulos/${itemId}`, newData);
+      setProductos(prevProducts =>
+        prevProducts.map(product =>
+          product._id === itemId ? { ...product, ...newData } : product
+        )
+      );
+      console.log("Artículo actualizado correctamente:", itemId);
+    } catch (error) {
+      console.error('Error al actualizar el artículo:', error);
+    }
+  };
   return (
-    <itemContext.Provider value={{ products, cartItems,addTOcart,removeFormcart, getTotalcarAmount, getTotalCartItems,addArticleToDatabase }}>
+    <itemContext.Provider value={{ products, cartItems,addTOcart,removeFormcart, getTotalcarAmount, getTotalCartItems,addArticleToDatabase, actualizarArticulo,eliminarArticulo }}>
       {children}
     </itemContext.Provider>
   );

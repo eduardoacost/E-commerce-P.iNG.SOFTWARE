@@ -74,9 +74,10 @@ const Navbar = () => {
                 <div className="admin-dropdown">
                     <select className="admin-select" onChange={handleAdminDropdownChange} value={isAdminOption}>
                         <option value="">Administrar</option>
-                        <option value="/VerPedidos">Ver Pedidos</option>
+                        <option value="/VerPedidosAdmin">Compras</option>
                         <option value="/ListaDiseños">Ver Lista de Diseños</option>
-                        <option value="/AñadirArticulos">Añadir Artículos</option>
+                        <option value="/AñadirArticulos">Artículos</option>
+                        <option value="/Categorias">Categorias</option>
                     </select>
                 </div>
             )}

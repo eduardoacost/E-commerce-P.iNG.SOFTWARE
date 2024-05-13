@@ -15,6 +15,8 @@ import PreviwProd from './Pages/PreviewProd/PreviwProd';
 import Compra from './Pages/Compras/Compra';
 import Añaarti from './Pages/Admin-Articulos/Añaarti';
 import Pedusu from './Pages/Listapedusu/Pedusu';
+import Vercom from './Pages/Admin-Pedidos/Vercom';
+import Categorias from './Pages/Admin-Categorias/Categorias';
 
 function App() {
   return (
@@ -36,6 +38,8 @@ function App() {
             <Route path='/Compra' element={<Compra/>}/>
             <Route path='/AñadirArticulos' element={<Añaarti/>}/>
             <Route path='/VerPedidos' element={<Pedusu/>}/>
+            <Route path='/VerPedidosAdmin' element={<Vercom/>}/>
+            <Route path='/Categorias' element={<Categorias/>}/>
           </Routes>
          <Footer/>
       </BrowserRouter>

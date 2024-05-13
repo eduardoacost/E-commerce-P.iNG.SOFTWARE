@@ -10,10 +10,14 @@ router
 
   router.route("/search").get(buscarCompraPorConsecutivo)
   
-  router.route("/del").delete(eliminarCompra)
-  router.route("/upd").put(actualizarCompra)
+ 
   
   router.route("/usuario").get(obtenerComprasPorUsuario);
+
+  router
+  .route("/:id")
+  .put(actualizarCompra)
+  .delete(eliminarCompra);
 
 
 module.exports = router;

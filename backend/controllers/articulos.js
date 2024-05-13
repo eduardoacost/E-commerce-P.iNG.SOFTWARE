@@ -97,12 +97,14 @@ const actualizarArticulo = async (req, res) => {
   try {
     const {
       nombre,
+      descripcion,
       precioUnitario,
       stock,
       comentario,
       isPersonalizable,
       imagen
     } = req.body;
+
 
     // Validación de campos obligatorios
     if (!nombre) {
@@ -160,11 +162,17 @@ const actualizarArticulo = async (req, res) => {
       return res.json({ error: "La imagen es obligatoria" });
     }
 
-    const articulo = await Articulo.findByIdAndUpdate(req.params.id, req.body, {
+    const articulo = await Articulo.findByIdAndUpdate(req.params.id, {
+      nombre,
+      descripcion,
+      precioUnitario,
+      stock, // No es necesario especificar 'stock: stock' si el nombre de la variable es igual al nombre de la propiedad
+      comentario,
+      isPersonalizable,
+      imagen
+    }, {
       new: true,
     });
-
-    await articulo.save();
 
     res.json(articulo);
   } catch (error) {

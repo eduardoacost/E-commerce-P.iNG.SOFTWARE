@@ -6,8 +6,12 @@ const { crearCategoria, actualizarCategoria, eliminarCategoria, listarCategorias
 
 router.route("/crearcat").post(crearCategoria);
 router.route('/:IdCategoria').put(actualizarCategoria);
-router.route('/:IdCategoria').delete(eliminarCategoria);
+router.route('/categoriasr/:IdCategoria').delete(eliminarCategoria);
 router.route('/categorias').get(listarCategorias);
 router.route('/_id').get(buscarCategoria);
+
+router.route("/categoriasr")
+    .post(crearCategoria)
+    .get(listarCategorias);
 
 module.exports = router;
