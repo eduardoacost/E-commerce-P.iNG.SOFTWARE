@@ -86,9 +86,10 @@ const Navbar = () => {
             )}
              {!isAdmin && !isDesigner && localStorage.getItem('auth-token') &&(
                 
+                <>
                 <Link to='/VerPedidos'><button>Ver Tus Pedidos</button></Link>
-
-            
+                <Link to='/DiseñosSolicitados'><button>Diseños Solicitados</button></Link>
+            </>
             )}
             {!localStorage.getItem('auth-token') && (
                 <Link to='/Login'><button>Iniciar Sesión</button></Link>

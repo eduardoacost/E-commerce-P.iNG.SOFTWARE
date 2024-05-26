@@ -7,11 +7,6 @@ const disennoSchema = Schema({
     unique: true,
   },
 
-  nombre: {
-    type: String,
-    require: true,
-  },
-
   descripcion: {
     type: String,
     require: true,
@@ -23,7 +18,8 @@ const disennoSchema = Schema({
   },
 
   producto: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "articulo",
     require: true,
   },
 
@@ -33,14 +29,20 @@ const disennoSchema = Schema({
   },
 
   disennadorEncargado: {
-    type: String,
+    type: Schema.Types.ObjectId,
+    ref: "usuario",
     require: true,
   },
 
   fechaCreacion: {
     type: Date,
     require: true,
-  }
+  },
+
+  usuario: { 
+    type: Schema.Types.ObjectId, 
+    required: true, 
+    ref: "usuario" },
 });
 
 module.exports = model("disenno", disennoSchema);
