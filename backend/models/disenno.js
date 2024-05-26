@@ -31,7 +31,7 @@ const disennoSchema = Schema({
   disennadorEncargado: {
     type: Schema.Types.ObjectId,
     ref: "usuario",
-    require: true,
+    require: false,
   },
 
   fechaCreacion: {

@@ -1,9 +1,9 @@
 import React, { useContext, useState } from "react";
 import "./ProductsDis.scss";
 import { itemContext } from "../../Context/itemsContext";
+import axios from 'axios';
 import star_icon from "../Assets/star_icon.png";
 import star_dull from "../Assets/star_dull_icon.png";
-import imagenremplazable from "../Assets/product_1.png";
 
 const ProductDisplay = ({ selectedProductId }) => {
     const { products, addTOcart } = useContext(itemContext);
@@ -13,9 +13,58 @@ const ProductDisplay = ({ selectedProductId }) => {
     const [customDescription, setCustomDescription] = useState('');
     const [customImageUrl, setCustomImageUrl] = useState('');
 
-    const handleCreateDesign = () => {
-        // Handle the creation of the custom design here
-        console.log('Custom Design Created:', customDescription, customImageUrl);
+    const handleCreateDesign = async () => {
+        try {
+            // Obtener el token del localStorage
+            const token = localStorage.getItem('auth-token');
+            console.log(token);
+
+            // Verificar si el token está presente
+            if (!token) {
+                console.error('User token not found');
+                return;
+            }
+
+            // Extraer el ID de usuario del token (si es posible)
+            const userId = extractUserIdFromToken(token);
+            console.log(userId)
+
+            // Verificar si se pudo extraer el ID de usuario
+            if (!userId) {
+                console.error('User ID not found in token');
+                return;
+            }
+
+            const response = await axios.post('http://localhost:4000/api/disenos/', {
+                identificador: `disenno-${Date.now()}`,
+                descripcion: customDescription,
+                urlImagen: customImageUrl,
+                producto: selectedProductId,
+                estado: "pendiente",
+                fechaCreacion: new Date(),
+                usuario: userId,
+            }, {
+                headers: {
+                    'auth-token': token // Enviar el token en el encabezado
+                }
+            });
+
+            console.log('Custom Design Created:', response.data.disennoGuardado);
+            alert("Se ha generado su diseño")
+            window.location.href = "/";
+        } catch (error) {
+            console.error('Error creating custom design:', error);
+        }
+    };
+
+    const extractUserIdFromToken = (token) => {
+        try {
+            const decodedToken = JSON.parse(atob(token.split('.')[1]));
+            return decodedToken.uid;
+        } catch (error) {
+            console.error('Error decoding token:', error);
+            return null;
+        }
     };
 
     return (

@@ -17,6 +17,7 @@ import Añaarti from './Pages/Admin-Articulos/Añaarti';
 import Pedusu from './Pages/Listapedusu/Pedusu';
 import Vercom from './Pages/Admin-Pedidos/Vercom';
 import Categorias from './Pages/Admin-Categorias/Categorias';
+import Diseñusu from './Pages/diseñusu/Diseñusu';
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
             <Route path='/VerPedidos' element={<Pedusu/>}/>
             <Route path='/VerPedidosAdmin' element={<Vercom/>}/>
             <Route path='/Categorias' element={<Categorias/>}/>
+            <Route path='/DiseñosSolicitados' element={<Diseñusu/>}/>
           </Routes>
          <Footer/>
       </BrowserRouter>

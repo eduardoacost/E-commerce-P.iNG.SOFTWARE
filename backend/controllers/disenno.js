@@ -1,11 +1,12 @@
-const disennoModel = require("../models/disenno");
-const articuloModel = require("../models/articulo");
-const usuarioModel = require("../models/usuario");
+const disenno = require("../models/disenno");
+const Articulo = require("../models/articulo");
+const { asyncHandler } = require("../middlewares/asyncHandler.js");
+const usuario = require("../models/usuario");
 
 // GET TODOS
 const obtenerDisennos = async (req, res) => {
   try {
-    const disennos = await Disenno.find();
+    const disennos = await disenno.find().populate('producto').populate('usuario');
     res.json(disennos);
   } catch (error) {
     res.status(500).json({ error: "ERROR del servidor" });
@@ -16,7 +17,7 @@ const obtenerDisennos = async (req, res) => {
 const obtenerDisennosPorId = async (req, res) => {
   const { id } = req.params;
   try {
-    const disenno = await Disenno.obtenerDisennosPorId(id);
+    const disenno = await disenno.findById(id).populate('producto').populate('usuario');
     if (!disenno) {
       return res.status(404).json({ error: "Disenno no encontrado" });
     }
@@ -26,35 +27,41 @@ const obtenerDisennosPorId = async (req, res) => {
   }
 };
 
+const obtenerDisennosusuario = asyncHandler(async (req, res) => {
+  try {
+    const userId = req.query.usuario;
+    const disennos = await disenno.find({ usuario: userId }).populate('producto').populate('usuario');
+    res.json(disennos);
+  } catch (error) {
+    res.status(500).json({ error: "ERROR del servidor" });
+  }
+});
+
 // CREATE
 const crearDisenno = async (req, res) => {
   const {
     identificador,
     descripcion,
     urlImagen,
-    articuloModel,
+    producto,
     estado,
-    disennadorEncargado,
     fechaCreacion,
-    usuarioModel,
+    usuario,
   } = req.body;
 
   try {
-    const nuevoDisenno = new disennoModel({
+    const nuevoDisenno = new Disenno({
       identificador,
       descripcion,
       urlImagen,
-      articuloModel,
+      producto,
       estado,
-      disennadorEncargado,
       fechaCreacion,
-      usuarioModel,
+      usuario,
     });
 
     const disennoGuardado = await nuevoDisenno.save();
-    res
-      .status(201)
-      .json({ msg: "Disenno creado correctamente", disennoGuardado });
+    res.status(201).json({ msg: "Disenno creado correctamente", disennoGuardado });
   } catch (error) {
     res.status(500).json({ error: "ERROR del servidor" });
   }
@@ -66,27 +73,25 @@ const actualizarPorId = async (req, res) => {
   const {
     descripcion,
     urlImagen,
-    Articulo,
+    producto,
     estado,
-    disennadorEncargado,
     fechaCreacion,
-    Usuario,
+    usuario,
   } = req.body;
 
   try {
-    const updatedDisenno = await Disenno.obtenerDisennosPorId(
+    const updatedDisenno = await disenno.findByIdAndUpdate(
       id,
       {
         descripcion,
         urlImagen,
-        Articulo,
+        producto,
         estado,
-        disennadorEncargado,
         fechaCreacion,
-        Usuario,
+        usuario,
       },
       { new: true }
-    );
+    ).populate('producto').populate('usuario');
     if (!updatedDisenno) {
       return res.status(404).json({ error: "Disenno no encontrado" });
     }
@@ -100,7 +105,7 @@ const actualizarPorId = async (req, res) => {
 const borrarPorId = async (req, res) => {
   const { id } = req.params;
   try {
-    const disennoBorrado = await Disenno.borrarPorId(id);
+    const disennoBorrado = await disenno.findByIdAndDelete(id);
     if (!disennoBorrado) {
       return res.status(404).json({ error: "Disenno no encontrado" });
     }
@@ -116,4 +121,5 @@ module.exports = {
   crearDisenno,
   actualizarPorId,
   borrarPorId,
+  obtenerDisennosusuario,
 };
