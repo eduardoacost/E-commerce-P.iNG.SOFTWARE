@@ -17,10 +17,30 @@ const disennoSchema = Schema({
     require: true,
   },
 
+  urlImagen: {
+    type: String,
+    require: true,
+  },
+
+  producto: {
+    type: String,
+    require: true,
+  },
+
+  estado: {
+    type: String,
+    require: true,
+  },
+
+  disennadorEncargado: {
+    type: String,
+    require: true,
+  },
+
   fechaCreacion: {
     type: Date,
     require: true,
-  },
+  }
 });
 
 module.exports = model("disenno", disennoSchema);
