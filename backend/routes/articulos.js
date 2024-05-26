@@ -13,7 +13,11 @@ const {
 
 const validarId = require("../middlewares/validarId.js");
 
-router.route("/").get(buscarArticulos).post(añadirArticulo).put(actualizarArticulo);
+router
+  .route("/")
+  .get(buscarArticulos)
+  .post(añadirArticulo)
+  .put(actualizarArticulo);
 
 router.route("/todosLosArticulos").get(buscarTodosLosArticulos);
 

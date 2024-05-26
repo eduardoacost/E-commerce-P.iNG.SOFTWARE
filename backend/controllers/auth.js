@@ -35,7 +35,6 @@ const crearUsuario = asyncHandler(async (req, res = express.request) => {
     await usuario.save();
     const token = await (generarToken(res, usuario._id,usuario.isAdmin , usuario.isDisennador));
    
-
     //Enviar respuesta al cliente
     res.status(201).json({
       ok: true,
