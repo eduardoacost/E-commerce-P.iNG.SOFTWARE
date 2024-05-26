@@ -1,22 +1,29 @@
 const express = require("express");
 const router = express.Router();
 const { check } = require("express-validator");
-const { crearUsuario, loginUsuario, borrarUsuario , getUserInfo, logoutUsuario} = require("../controllers/auth");
+const {
+  crearUsuario,
+  loginUsuario,
+  borrarUsuario,
+  getUserInfo,
+  logoutUsuario,
+} = require("../controllers/auth");
 
 const { validarCampos } = require("../middlewares/validarCampos");
-const  authMiddleware  = require("../middlewares/authMiddleware")
+const authMiddleware = require("../middlewares/authMiddleware");
 
-router.post("/login", 
-[ 
-check('correo',' el correo es obligatorio').isEmail(),
-check('password',).isLength({min:6}),
-validarCampos,
-], 
-loginUsuario);
+router.post(
+  "/login",
+  [
+    check("correo", " el correo es obligatorio").isEmail(),
+    check("password").isLength({ min: 6 }),
+    validarCampos,
+  ],
+  loginUsuario
+);
 router.delete("/delete", borrarUsuario);
 
-router.get("/userinfo", authMiddleware, getUserInfo); 
-
+router.get("/userinfo", authMiddleware, getUserInfo);
 
 router.post(
   "/new",
