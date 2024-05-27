@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import './Navbar.scss';
-import logo from '../Assets/logo.png';
+import logo from '../Assets/WhatsApp Image 2024-05-27 at 12.28.12 PM.jpeg';
 import cart_icon from '../Assets/cart_icon.png';
 import { Link } from "react-router-dom";
 import { itemContext } from "../../Context/itemsContext";
