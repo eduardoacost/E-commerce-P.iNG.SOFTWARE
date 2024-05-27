@@ -1,0 +1,48 @@
+.diseñoadm{
+    margin: 100px 170px;
+}
+
+.diseñoadm hr{
+    height: 3px;
+    border-radius: 3px;
+    background: black;
+}
+
+.admindis{
+    display: grid;
+    grid-template-columns: 0.5fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding: 20px 0px;
+    color: #454545;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.listdadis img{
+    height: 62px;
+}
+
+.listdadis{
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.listdadis button{
+    color: #000000;
+    font-size: 12px;
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border: none;
+    outline: none;
+    height: 5vh;
+}
+
+.listdadis select{
+    border: 2px solid #ebebeb;
+    background: #fff;
+    width: 90%;
+}

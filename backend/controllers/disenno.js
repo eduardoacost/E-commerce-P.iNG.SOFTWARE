@@ -47,6 +47,8 @@ const obtenerDisennosUsuario = asyncHandler(async (req, res) => {
   }
 });
 
+
+
 // CREATE
 const crearDisenno = async (req, res) => {
   const {
@@ -82,7 +84,7 @@ const crearDisenno = async (req, res) => {
 // UPDATE x ID
 const actualizarPorId = async (req, res) => {
   const { id } = req.params;
-  const { descripcion, urlImagen, producto, estado, fechaCreacion, usuario } =
+  const { descripcion, urlImagen, producto, estado, fechaCreacion, usuario , disennadorEncargado } =
     req.body;
 
   try {
@@ -96,6 +98,7 @@ const actualizarPorId = async (req, res) => {
           estado,
           fechaCreacion,
           usuario,
+          disennadorEncargado,
         },
         { new: true }
       )
@@ -124,6 +127,17 @@ const borrarPorId = async (req, res) => {
   }
 };
 
+const obtenerDisennosPorDisennador = asyncHandler(async (req, res) => {
+  const { disennadorId } = req.params;
+  try {
+    const disennos = await disenno.find({ disennadorEncargado: disennadorId }).populate("producto").populate("usuario");
+    res.json(disennos);
+  } catch (error) {
+    res.status(500).json({ error: "ERROR del servidor" });
+  }
+});
+
+
 module.exports = {
   obtenerDisennos,
   obtenerDisennosPorId,
@@ -131,4 +145,6 @@ module.exports = {
   actualizarPorId,
   borrarPorId,
   obtenerDisennosUsuario,
+  obtenerDisennosPorDisennador,
+  
 };

@@ -18,6 +18,8 @@ import Pedusu from './Pages/Listapedusu/Pedusu';
 import Vercom from './Pages/Admin-Pedidos/Vercom';
 import Categorias from './Pages/Admin-Categorias/Categorias';
 import Diseñusu from './Pages/diseñusu/Diseñusu';
+import DIseñoadm from './Pages/Admin-diseños/DIseñoadm';
+import Diseñadordis from './Pages/DIseñador-Diseños/Diseñadordis';
 
 function App() {
   return (
@@ -42,6 +44,8 @@ function App() {
             <Route path='/VerPedidosAdmin' element={<Vercom/>}/>
             <Route path='/Categorias' element={<Categorias/>}/>
             <Route path='/DiseñosSolicitados' element={<Diseñusu/>}/>
+            <Route path='/ListaDiseños' element={<DIseñoadm/>}/>
+            <Route path='/ListaDiseñosDiseñador' element={<Diseñadordis/>}/>
           </Routes>
          <Footer/>
       </BrowserRouter>

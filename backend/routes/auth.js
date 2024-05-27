@@ -7,6 +7,7 @@ const {
   borrarUsuario,
   getUserInfo,
   logoutUsuario,
+  obtenerDisennadores,
 } = require("../controllers/auth");
 
 const { validarCampos } = require("../middlewares/validarCampos");
@@ -24,6 +25,8 @@ router.post(
 router.delete("/delete", borrarUsuario);
 
 router.get("/userinfo", authMiddleware, getUserInfo);
+
+router.route("/disennadores").get(obtenerDisennadores);
 
 router.post(
   "/new",

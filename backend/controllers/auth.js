@@ -211,10 +211,21 @@ const logoutUsuario = asyncHandler(async (req, res) => {
     });
   }
 });
+
+const obtenerDisennadores = asyncHandler(async (req, res) => {
+  try {
+    const disennadores = await Usuario.find({ isDisennador: true });
+    res.json(disennadores);
+  } catch (error) {
+    res.status(500).json({ error: "ERROR del servidor" });
+  }
+});
+
 module.exports = {
   loginUsuario,
   crearUsuario,
   borrarUsuario,
   getUserInfo,
-  logoutUsuario
+  logoutUsuario,
+  obtenerDisennadores,
 };

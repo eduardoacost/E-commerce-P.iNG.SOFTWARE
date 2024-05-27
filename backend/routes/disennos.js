@@ -8,11 +8,13 @@ const {
   actualizarPorId,
   borrarPorId,
   obtenerDisennosUsuario,
+  obtenerDisennosPorDisennador,
 } = require("../controllers/disenno.js");
 
 router.route("/").get(obtenerDisennos).post(crearDisenno);
 
 router.route("/usu").get(obtenerDisennosUsuario);
+router.route("/disennador/:disennadorId").get(obtenerDisennosPorDisennador);
 
 router
   .route("/:id")
