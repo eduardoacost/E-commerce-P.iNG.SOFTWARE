@@ -3,6 +3,7 @@ const { asyncHandler } = require("../middlewares/asyncHandler");
 const bcrypt = require("bcryptjs");
 const Usuario = require("../models/usuario");
 const { generarToken } = require("../utils/jwt");
+const { confirmacionEmail} = require("../controllers/confirmacionEmail");
 
 //Función asíncrona para crear un usuario
 const crearUsuario = asyncHandler(async (req, res = express.request) => {
@@ -33,6 +34,7 @@ const crearUsuario = asyncHandler(async (req, res = express.request) => {
   //Guardar el usuario en la base de datos
   try {
     await usuario.save();
+    confirmacionEmail(correo, username);
     const token = await (generarToken(res, usuario._id,usuario.isAdmin , usuario.isDisennador));
    
     //Enviar respuesta al cliente

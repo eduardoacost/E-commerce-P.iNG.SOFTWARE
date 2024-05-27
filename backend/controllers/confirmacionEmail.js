@@ -1,31 +1,31 @@
-const nodemailer = require("nodemailer");
+const { MailtrapClient } = require("mailtrap");
 
-// Aqui creo el transporter, básicamente es el que se encarga de configurar el remitente de correo
-const transporter = nodemailer.createTransport({
-  host: "smtp.ethereal.email",
-  port: 587,
-  auth: {
-    user: "pinkie.powlowski66@ethereal.email",
-    pass: "VCxDupE63Sp5db2h6K",
-  },
-});
+function emailSender(emailUser, nameUser) {
+  const TOKEN = process.env.MAILTRAP_TOKEN;
+  const ENDPOINT = process.env.MAILTRAP_ENDPOINT;
 
-// Objeto mensaje, usé eethereal.email para pruebas, pero se puede cambiar a cualquier otro servicio de correo menos Gmail y Outlook por el OAuth2
-let message = {
-  from: "Pinkie Powlowski <pinkie.powlowski66@ethereal.email>",
-  to: "Beaulah Hamil <beaulah.hamill20@ethereal.email>",
-  subject: "Nodemailer es la re verga",
-  text: "BUENASSS",
-  html: "<p><b>Hola</b> to myself!</p>",
-};
+  const client = new MailtrapClient({ endpoint: ENDPOINT, token: TOKEN });
 
-// Envio el mensaje
-transporter.sendMail(message, (err, info) => {
-  if (err) {
-    console.log("ERROR. " + err.message);
-    return process.exit(1);
-  }
+  const sender = {
+    email: "mailtrap@demomailtrap.com",
+    name: "Mailtrap Test",
+  };
+  const recipients = [
+    {
+      email: emailUser,
+    },
+  ];
 
-  console.log("Mensaje enviado: %s", info.messageId);
-  console.log("URL de preview: %s", nodemailer.getTestMessageUrl(info));
-});
+  client
+    .send({
+      from: sender,
+      to: recipients,
+      template_uuid: "a5083270-ecca-4fab-9974-437a5a408bef",
+      template_variables: {
+        user_name: nameUser,
+      },
+    })
+    .then(console.log, console.error);
+}
+
+module.exports = emailSender;
