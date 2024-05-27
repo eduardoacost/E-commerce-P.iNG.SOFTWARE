@@ -19,7 +19,7 @@ const disennoSchema = Schema({
 
   producto: {
     type: Schema.Types.ObjectId,
-    ref: "articulo",
+    ref: "Articulo",
     require: true,
   },
 
@@ -45,4 +45,4 @@ const disennoSchema = Schema({
     ref: "usuario" },
 });
 
-module.exports = model("disenno", disennoSchema);
+module.exports = model("Disenno", disennoSchema);
