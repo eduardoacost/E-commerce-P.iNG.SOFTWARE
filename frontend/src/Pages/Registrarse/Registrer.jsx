@@ -56,25 +56,25 @@ const Registrar = () =>{
                 <img src={foton} alt="" />
             </div>
             <div className="tit">
-                <p>Camisetas Colombia</p>
+                <p>Registro</p>
             </div>
             <div className="subtit">
-                <p>Acceso gratuito a todas las herramientas de nuestro E-commerce</p>
+                <p>Crea tu cuenta diligenciando la siguiente información</p>
             </div>
             <div className="infot">
-                <p>Identificacion</p>
+                <p>Número de identificación</p>
                 <input type="text"
                  name="identificacion"
                  value={formData.identificacion}
                  onChange={handleInputChange}
                  />
-                <p>Nombre Completo</p>
+                <p>Nombre de usuario</p>
                 <input type="text" 
                  name="username"
                  value={formData.username}
                  onChange={handleInputChange}
                 />
-                <p>Email</p>
+                <p>E-mail</p>
                 <input type="email" 
                 name="correo"
                 value={formData.correo}

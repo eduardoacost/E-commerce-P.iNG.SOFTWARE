@@ -5,6 +5,7 @@ const cors = require("cors");
 
 class Server {
   constructor() {
+
     this.app = express();
     this.port = process.env.PORT || 4000;
     this.server = require("http").createServer(this.app);
@@ -13,7 +14,7 @@ class Server {
       auth: "/api/auth",
       catalogo: "/api/catalogo",
       articulos: "/api/articulos",
-      compra:"/api/compra",
+      compra: "/api/compra",
       categoria: "/api/categoria",
       disennos: "/api/disennos"
     };
@@ -32,7 +33,6 @@ class Server {
     this.app.use(cors());
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
-  
   }
 
   setRoutes() {
@@ -42,26 +42,21 @@ class Server {
     this.app.use(this.paths.compra, require("../routes/compra.js"));
     this.app.use(this.paths.categoria, require("../routes/categoria.js"));
     this.app.use(this.paths.disennos, require("../routes/disennos.js"));
-   
-    
+
     this.app.use((req, res, next) => {
       res.status(404).json({
-        mensaje: 'La ruta solicitada no existe.'
+        mensaje: 'La ruta solicitada no existe.',
       });
     });
-    
   }
-  
 
   listen() {
     this.app.listen(this.port, () => {
       //callback
-      console.log("Servidor corriendo en puerto:", process.env.PORT);
+      console.log("Servidor HTTP corriendo en puerto", process.env.PORT);
       console.log("Ejecutando", process.env.VERSION);
-
     });
   }
 }
-
 
 module.exports = Server;

@@ -57,7 +57,7 @@ const Navbar = () => {
     return (
         <div className="navbar">
         <div className="nav-logo">
-            <img src={logo} alt="" />
+            <img src={logo} alt="Logo SportiFusion"  />
             <p>SportiFusion</p>
         </div>
         <ul className="nav-menu">
@@ -66,7 +66,7 @@ const Navbar = () => {
             </li>
             
             <li>
-                <Link style={{ textDecoration: 'none' }} to='/Contactanos'>Contactanos</Link>
+                <Link style={{ textDecoration: 'none' }} to='/Contactanos'>Contáctanos</Link>
             </li>
         </ul>
         <div className="nav-login-cart">
@@ -87,8 +87,8 @@ const Navbar = () => {
              {!isAdmin && !isDesigner && localStorage.getItem('auth-token') &&(
                 
                 <>
-                <Link to='/VerPedidos'><button>Ver Tus Pedidos</button></Link>
-                <Link to='/DiseñosSolicitados'><button>Diseños Solicitados</button></Link>
+                <Link to='/VerPedidos'><button>Ver tus pedidos</button></Link>
+                <Link to='/DiseñosSolicitados'><button>Diseños solicitados</button></Link>
             </>
             )}
             {!localStorage.getItem('auth-token') && (

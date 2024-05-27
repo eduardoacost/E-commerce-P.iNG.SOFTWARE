@@ -1,6 +1,9 @@
 import React from "react";
 import "./Footer.scss"
 import features from '../Assets/features.png'
+import sectigoLogo from '../Assets/sslTrusted.png'
+import { Link } from "react-router-dom";
+
 
 const Footer = () => {
     return(
@@ -10,35 +13,36 @@ const Footer = () => {
             </div>
             <ul className="Mantente-Conectado">
                 <p>Mantente Conectado</p>
-                <li>Direccion: Colombia</li>
-                <li>Phone: (+52) 985 98 75</li>
-                <p>siguenos en las redes sociales</p>
+                <li>Dirección: Cl. 45 #99-39, Cali, VAC</li>
+                <li><Link style={{ textDecoration: 'none' }} to='https://wa.me/573213595249/'><p>(+57) 321 359 5249</p></Link></li>
+                <p>No te nos pierdass 🤩</p>
             </ul>
             <ul className="Mansoury">
-                <p>Mansoury</p>
-                <li>Sobre Nosotros</li>
+                <p>SportiFusion</p>
+                <li>Nosotros</li>
                 <li>Empleo</li>
-                <li>Colaboracion</li>
+                <li>Colaboración</li>
             </ul>
 
             <lu className="Atencion-Al-Cliente">
-                <p>Atencion al Cliente</p>
-                <li>Normas y Reglamentos</li>
-                <li>Terminos de Uso</li>
-                <li>Procedimientos de Devolucion</li>
-                <li>Politica de Privacidad</li>
+                <p>Atención al Cliente</p>
+                <li>Normas y reglamentos</li>
+                <li>Terminos de uso</li>
+                <li>Procedimientos de devolución</li>
+                <li>Política de privacidad</li>
             </lu>
 
             <lu className="Acesso-Rapido">
                 <p>Acesso Rápido</p>
-                <li>Contactanos</li>
-                <li>Orden de Seguimientos</li>
+                <li><Link style={{ textDecoration: 'none' }} to='/Contactanos'><p>Contáctanos</p></Link></li>
+                <li>Órden de Seguimientos</li>
                 <li>Devoluciones y Reembolsos</li>
                 
             </lu>
             <div className="Copy">
                 <hr />
-                <p>Copyright @ 2024 - All Rigth Reserved.</p>
+                <p>Copyright © 2024 - Todos los derechos reservados</p>
+                <img src={sectigoLogo} alt="Trusted by ©Sectigo" />
             </div>
 
         </div>
