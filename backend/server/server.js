@@ -15,7 +15,7 @@ class Server {
       articulos: "/api/articulos",
       compra:"/api/compra",
       categoria: "/api/categoria",
-      diseños: "/api/disenos"
+      disennos: "/api/disennos"
     };
 
     this.connectToDB();
@@ -41,7 +41,7 @@ class Server {
     this.app.use(this.paths.articulos, require("../routes/articulos.js"));
     this.app.use(this.paths.compra, require("../routes/compra.js"));
     this.app.use(this.paths.categoria, require("../routes/categoria.js"));
-    this.app.use(this.paths.diseños, require("../routes/disennos.js"));
+    this.app.use(this.paths.disennos, require("../routes/disennos.js"));
    
     
     this.app.use((req, res, next) => {
