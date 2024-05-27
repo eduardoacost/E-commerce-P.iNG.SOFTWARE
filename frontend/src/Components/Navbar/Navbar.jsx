@@ -58,7 +58,7 @@ const Navbar = () => {
         <div className="navbar">
         <div className="nav-logo">
             <img src={logo} alt="" />
-            <p>E-COMMERCE</p>
+            <p>SportiFusion</p>
         </div>
         <ul className="nav-menu">
             <li>
@@ -82,7 +82,7 @@ const Navbar = () => {
                 </div>
             )}
             {isDesigner && (
-                <Link to="/ListaDiseños"><button>Lista de Diseños</button></Link>
+                <Link to="/ListaDiseñosDiseñador"><button>Lista de Diseños</button></Link>
             )}
              {!isAdmin && !isDesigner && localStorage.getItem('auth-token') &&(
                 

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import "./Diseñusu.scss"
 
 const Diseñusu = () => {
   const [diseños, setDiseños] = useState([]);
@@ -23,7 +24,7 @@ const Diseñusu = () => {
       if (decodedToken && decodedToken.uid) {
         setUserId(decodedToken.uid);
         setIsLoggedIn(true);
-        axios.get(`http://localhost:4000/api/disenos/usu?usuario=${decodedToken.uid}`)
+        axios.get(`http://localhost:4000/api/disennos/usu?usuario=${decodedToken.uid}`)
           .then(response => {
             setDiseños(response.data);
             // Inicializar el estado de los diseños expandidos para cada usuario
@@ -51,7 +52,7 @@ const Diseñusu = () => {
       <div className="usuitems">
         <p>Descripción</p>
         <p>Estado</p>
-        <p>URL de la Imagen</p>
+        <p>Imagen</p>
         <p>Detalles</p>
       </div>
       <hr />
@@ -62,7 +63,7 @@ const Diseñusu = () => {
               <div className="listadisenousu usuitems">
                 <p>{diseño.descripcion}</p>
                 <p>{diseño.estado}</p>
-                <p>{diseño.urlImagen}</p>
+                <img src={diseño.urlImagen} alt="" />
                 <button onClick={() => toggleDiseñoExpansion(index)}>
                   {expandedDiseños[index] ? 'Ocultar Detalles' : 'Mostrar Detalles'}
                 </button>
@@ -70,7 +71,15 @@ const Diseñusu = () => {
               <hr />
               {expandedDiseños[index] && (
                 <div>
-                  {/* Agrega aquí más detalles del diseño según sea necesario */}
+                    <div className='diseñditail'>
+                    <p>Articulo</p>
+                    <p>nombre del articulo</p>
+                    </div>
+                    <hr />
+                <div className='diseñditail'>
+                  <img src={diseño.producto.imagen} alt="" />
+                  <p> {diseño.producto.nombre} </p>
+                </div>
                 </div>
               )}
             </div>
