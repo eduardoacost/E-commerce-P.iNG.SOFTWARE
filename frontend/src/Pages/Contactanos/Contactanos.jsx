@@ -4,7 +4,7 @@ import './Contactanos.scss'
 const Contactanos = () => {
     return(
         <div className="Contactanos">
-            <p className="cami">Camisetas Colombia</p>
+            <p className="cami">¿Aún sigues dudando?</p>
             <div className="titulo">
                 <p className="form">
                     Formulario de Contacto
@@ -14,7 +14,7 @@ const Contactanos = () => {
             <div className="datosmensaje">
                 <p>Nombre Completo</p>
                 <input type="text" />
-                <p>Email</p>
+                <p>E-mail</p>
                 <input type="text" />
             </div>
             <div className="mensaje">

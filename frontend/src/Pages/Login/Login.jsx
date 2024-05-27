@@ -44,13 +44,13 @@ const Login = () => {
                 <img src={foton} alt="" />
             </div>
             <div className="ti">
-                <p>Camisetas Colombia</p>
+                <p>Ingresa aquí</p>
             </div>
             <div className="subti">
-                <p>Acceso gratuito a todas las herramientas de nuestro E-commerce</p>
+                <p>Acceso para miembos exclusivos de SportiFusion</p>
             </div>
             <div className="info">
-                <p>Email</p>
+                <p>E-mail</p>
                 <input
                     type="email"
                     name="correo"
