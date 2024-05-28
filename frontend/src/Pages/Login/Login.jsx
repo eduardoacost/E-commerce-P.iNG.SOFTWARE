@@ -25,7 +25,7 @@ const Login = () => {
         try {
             const res = await axios.post("http://localhost:4000/api/auth/login", datos);
             setUser(res.data.user); // Establece el usuario en el contexto de usuario
-            alert("Bienvenido " + res.data.msg); // Mostrar mensaje de bienvenida
+            alert(res.data.msg); // Mostrar mensaje de bienvenida
             localStorage.setItem('auth-token', res.data.token); // Almacena el token en localStorage
             window.location.href = "/"; // Redirige al usuario a la página principal
         } catch (error) {

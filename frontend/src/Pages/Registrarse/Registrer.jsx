@@ -30,7 +30,7 @@ const Registrar = () =>{
             if (response.status === 201) {
                 setUser(response.data);
                 console.log("Usuario registrado con éxito",formData);
-                alert("Bienvenido");
+                alert("En breves segundos revisa tu bandeja de entrada. Bienvenido a SportiFusion");
                 window.location.href = "/";
                 localStorage.setItem('auth-token',response.data.token);
             } else {
