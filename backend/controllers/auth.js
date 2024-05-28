@@ -98,14 +98,14 @@ const loginUsuario = asyncHandler(async (req, res = express.request) => {
       });
     } if(esAdministrador && !esDiseñador) {
       return res.status(200).json({
-      msg: "Bienvenido ADMINISTRADOR " + usuario.username + " Login correcto",
+      msg: "Bienvenido Administrador: " + usuario.username,
       isAdmin: true,
       isDisennador: false,
       token
       });
     } else {
       return res.status(200).json({
-        msg: "Bienvenido Diseñador " + usuario.username + " Login correcto",
+        msg: "Bienvenido Diseñador: " + usuario.username,
         isAdmin: false,
         isDisennador: true,
         token

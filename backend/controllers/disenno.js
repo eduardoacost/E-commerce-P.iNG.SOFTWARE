@@ -62,7 +62,7 @@ const crearDisenno = async (req, res) => {
   } = req.body;
 
   try {
-    const nuevoDisenno = new Disenno({
+    const nuevoDisenno = new disenno({
       identificador,
       descripcion,
       urlImagen,
